@@ -1,0 +1,28 @@
+{
+  "root": "apps/world-explorer-e2e",
+  "sourceRoot": "apps/world-explorer-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/world-explorer-e2e/cypress.json",
+        "devServerTarget": "world-explorer:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "world-explorer:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/world-explorer-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["world-explorer"]
+}

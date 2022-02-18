@@ -1,0 +1,10 @@
+<div style="text-align: center">
+  <h1>Welcome to world-explorer!</h1>
+</div>
+<div>Message: {{ hello$ | async | json }}</div>
+
+<ng-container *ngIf="cheapFlights.length > 0">
+  <ng-container *ngFor="let cheapDestination of cheapFlights">
+    <world-explorer-destination [destination]="cheapDestination"></world-explorer-destination>
+  </ng-container>
+</ng-container>
