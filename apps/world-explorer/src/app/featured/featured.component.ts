@@ -24,7 +24,6 @@ export class FeaturedComponent {
 
   public onSubmit(): void {
     if(this.formGroup.valid) {
-      console.log(this.formGroup.controls);
       this.formSubmitEvent.emit(this.formGroup.value)
     }
   }

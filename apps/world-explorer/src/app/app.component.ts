@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Destination, Message } from '@world-explorer/api-interfaces';
+import { Destination } from '@world-explorer/api-interfaces';
 import { FlightsService } from './flights.service';
 
 @Component({
@@ -10,15 +9,14 @@ import { FlightsService } from './flights.service';
 })
 export class AppComponent {
 
-  hello$ = this._http.get<Message>('/api/hello');
-
   flights: Destination[] = [];
 
   cheapFlights: Destination[][] = [];
 
-  constructor(private _http: HttpClient, private _flightsService: FlightsService) {}
+  constructor(private _flightsService: FlightsService) {}
 
   fetchDestinations(peoples: any): void {
-    this._flightsService.getCheapFlightsForTwoPeople(peoples.people1, peoples.people2).subscribe(cheapFlights => this.cheapFlights = cheapFlights)
+    this._flightsService.getFlightsForTwoPeople(peoples.people1, peoples.people2).subscribe(cheapFlights => this.cheapFlights = cheapFlights)
   }
+
 }

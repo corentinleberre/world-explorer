@@ -6,8 +6,6 @@
     "args": { "VARIANT": "14" }
   },
 
-  "runArgs": ["--memory=8192"],
-
   "settings": {},
 
   "extensions": [
