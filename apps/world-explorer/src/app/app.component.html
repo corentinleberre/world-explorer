@@ -1,10 +1,13 @@
-<div style="text-align: center">
-  <h1>Welcome to world-explorer!</h1>
-</div>
-<div>Message: {{ hello$ | async | json }}</div>
+<world-explorer-navbar></world-explorer-navbar>
+
+<world-explorer-featured (formSubmitEvent)="fetchDestinations($event)"></world-explorer-featured>
 
 <ng-container *ngIf="cheapFlights.length > 0">
-  <ng-container *ngFor="let cheapDestination of cheapFlights">
-    <world-explorer-destination [destination]="cheapDestination"></world-explorer-destination>
-  </ng-container>
+  <div class="grid grid-cols-3 gap-4">
+    <ng-container *ngFor="let cheapDestination of cheapFlights; let index = index;">
+      <world-explorer-destination [destinations]="cheapDestination" [highlight]="index === 0"></world-explorer-destination>
+    </ng-container>
+  </div>
 </ng-container>
+
+<!-- https://dribbble.com/shots/16397479/attachments/10032306?mode=media -->

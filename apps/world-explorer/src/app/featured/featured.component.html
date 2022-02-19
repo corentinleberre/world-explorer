@@ -1,0 +1,23 @@
+<div class="grid grid-cols-6 gap-4">
+    <div class="col-start-2 col-span-4 featured rounded-lg shadow-lg">
+        <h1 class="featured-block featured-heading">Comparateur de vols multi-départs</h1>
+        <h1 class="featured-block featured-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis velit ad sapiente optio ratione aliquam voluptatem architecto quo ipsum, sequi odio, doloremque nihil laborum iusto voluptate nulla totam esse maiores.</h1>
+        <div class="flex flex-row justify-center">
+            <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="featured-input rounded-lg shadow-lg flex flex-row p-5 justify-around items-center">
+                <div class="flex flex-row items-center">
+                    <label for="people-1" class="pr-3">Personne 1</label>
+                    <input type="text" name="people1" formControlName="people1" class="bg-purple-white shadow rounded-lg border-0 p-3" placeholder="Code aéroport">
+                </div>
+                <div class="flex flex-row items-center">
+                    <label for="people-1" class="pr-3">Personne 2</label>
+                    <input type="text" name="people2" formControlName="people2" class="bg-purple-white shadow rounded-lg border-0 p-3" placeholder="Code aéroport">
+                </div>
+                <div>
+                    <button type="submit" class="hover:scale-110">
+                    <fa-icon [icon]="faMagnifyingGlass" size="2x"></fa-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

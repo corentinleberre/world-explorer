@@ -6,11 +6,18 @@
     "args": { "VARIANT": "14" }
   },
 
+  "runArgs": ["--memory=8192"],
+
   "settings": {},
 
   "extensions": [
-    "dbaeumer.vscode-eslint"
-  ],
+	"dbaeumer.vscode-eslint",
+	"nrwl.angular-console",
+	"angular.ng-template",
+	"ghaschel.vscode-angular-html",
+	"bradlc.vscode-tailwindcss",
+	"austenc.tailwind-docs"
+],
   
   "remoteUser": "node"
 }

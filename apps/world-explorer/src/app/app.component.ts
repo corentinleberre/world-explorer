@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Destination, Message } from '@world-explorer/api-interfaces';
 import { FlightsService } from './flights.service';
@@ -8,7 +8,7 @@ import { FlightsService } from './flights.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   hello$ = this._http.get<Message>('/api/hello');
 
@@ -18,9 +18,7 @@ export class AppComponent implements OnInit {
 
   constructor(private _http: HttpClient, private _flightsService: FlightsService) {}
 
-  ngOnInit(): void {
-    this._flightsService.getFlightsFromDestination("LUX").subscribe(flights => this.flights = flights);
-    this._flightsService.getCheapFlightsForTwoPeople().subscribe(cheapFlights => this.cheapFlights = cheapFlights)
+  fetchDestinations(peoples: any): void {
+    this._flightsService.getCheapFlightsForTwoPeople(peoples.people1, peoples.people2).subscribe(cheapFlights => this.cheapFlights = cheapFlights)
   }
-
 }

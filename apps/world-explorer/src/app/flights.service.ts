@@ -14,7 +14,7 @@ export class FlightsService {
     return this._http.get<Destination[]>(`api/flights-explorer?airport=${destination}&depart=20220408&retour=20220410`);
   }
 
-  getCheapFlightsForTwoPeople(): Observable<Destination[][]> {
-    return this._http.get<Destination[][]>(`/api/flights-explorer/two?airport1=LUX&airport2=NTE&depart=20220408&retour=20220410`);
+  getCheapFlightsForTwoPeople(people1: string, people2: string): Observable<Destination[][]> {
+    return this._http.get<Destination[][]>(`/api/flights-explorer/two?airport1=${people1}&airport2=${people2}&depart=20220408&retour=20220410`);
   }
 }
