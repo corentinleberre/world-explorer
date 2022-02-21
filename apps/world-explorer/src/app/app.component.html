@@ -2,7 +2,9 @@
 
 <world-explorer-featured (formSubmitEvent)="fetchDestinations($event)"></world-explorer-featured>
 
-<world-explorer-carousel [flights]="flights"></world-explorer-carousel>
+<ng-container *ngIf="flights.length > 0">
+  <world-explorer-carousel [flights]="flights"></world-explorer-carousel>
+</ng-container>
 
 <ng-container *ngIf="loading">
   <div class="w-full p-10">

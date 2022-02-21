@@ -11,9 +11,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FeaturedComponent } from './components/featured/featured.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CarouselComponent } from './components/carousel/carousel.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [BrowserModule, HttpClientModule, ReactiveFormsModule, FontAwesomeModule, NgxSkeletonLoaderModule],
+  imports: [BrowserModule, CommonModule, HttpClientModule, ReactiveFormsModule, FontAwesomeModule, NgxSkeletonLoaderModule],
   declarations: [AppComponent, DestinationComponent, NavbarComponent, FeaturedComponent, CarouselComponent],
   providers: [FlightsService],
   bootstrap: [AppComponent],

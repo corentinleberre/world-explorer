@@ -1,7 +1,20 @@
-<ng-container *ngIf="flights.length > 0">
-    <div class="grid grid-cols-3 gap-4">
+<div>
+  <div class="p-3 mb-3">
+    <div class="border-l-2 border-l-blue-400">
+      Période du {{ flights[0][0].departd | date }} au {{ flights[0][0].returnd | date }}
+    </div>
+  </div>
+  <div class="carousel-wrapper">
+    <div #carouselList class="carousel-list">
       <ng-container *ngFor="let destination of flights; let index = index;">
-        <world-explorer-destination [destinations]="destination" [highlight]="index === 0"></world-explorer-destination>
+        <world-explorer-destination class="carousel-item" [destinations]="destination" [highlight]="index === 0"></world-explorer-destination>
       </ng-container>
     </div>
-</ng-container>
+    <div #carouselArrow>
+      <ng-container *ngIf="displayArrow">
+        <fa-icon [icon]="faChevronRight" class="carousel-arrow pr-2"></fa-icon>
+      </ng-container>
+    </div>
+  </div>
+  <div class="p-4 border-b text-xs text-gray-600"></div>
+</div>
