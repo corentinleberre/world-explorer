@@ -3,17 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FlightsService } from './flights.service';
-import { DestinationComponent } from './destination/destination.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { FlightsService } from './services/flights.service';
+import { DestinationComponent } from './components/destination/destination.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FeaturedComponent } from './featured/featured.component';
+import { FeaturedComponent } from './components/featured/featured.component';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
-  imports: [BrowserModule, HttpClientModule, ReactiveFormsModule, FontAwesomeModule],
-  declarations: [AppComponent, NxWelcomeComponent, DestinationComponent, NavbarComponent, FeaturedComponent],
+  imports: [BrowserModule, HttpClientModule, ReactiveFormsModule, FontAwesomeModule, NgxSkeletonLoaderModule],
+  declarations: [AppComponent, DestinationComponent, NavbarComponent, FeaturedComponent, CarouselComponent],
   providers: [FlightsService],
   bootstrap: [AppComponent],
 })

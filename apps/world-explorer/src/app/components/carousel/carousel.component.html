@@ -1,0 +1,7 @@
+<ng-container *ngIf="flights.length > 0">
+    <div class="grid grid-cols-3 gap-4">
+      <ng-container *ngFor="let destination of flights; let index = index;">
+        <world-explorer-destination [destinations]="destination" [highlight]="index === 0"></world-explorer-destination>
+      </ng-container>
+    </div>
+</ng-container>

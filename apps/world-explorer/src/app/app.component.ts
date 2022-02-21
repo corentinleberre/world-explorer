@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { Destination } from '@world-explorer/api-interfaces';
-import { FlightsService } from './flights.service';
+import { FlightsService } from './services/flights.service';
 
 @Component({
   selector: 'world-explorer-root',
@@ -9,14 +9,24 @@ import { FlightsService } from './flights.service';
 })
 export class AppComponent {
 
-  flights: Destination[] = [];
+  flights: Destination[][] = [];
 
-  cheapFlights: Destination[][] = [];
+  loading = false;
 
-  constructor(private _flightsService: FlightsService) {}
+  constructor(
+    private _flightsService: FlightsService
+  ) {}
 
   fetchDestinations(peoples: any): void {
-    this._flightsService.getFlightsForTwoPeople(peoples.people1, peoples.people2).subscribe(cheapFlights => this.cheapFlights = cheapFlights)
+    this.flights = [];
+    this.loading = true;
+
+    this._flightsService.getFlights(peoples.people1, peoples.people2, peoples.start, peoples.end)
+      .subscribe(flights => {
+        this.loading = false;
+        this.flights = flights;
+      }
+    );
   }
 
 }

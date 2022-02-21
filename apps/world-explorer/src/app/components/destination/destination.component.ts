@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Destination } from '@world-explorer/api-interfaces';
 import { Subscription } from 'rxjs';
-import { FlightsService } from '../flights.service';
+import { FlightsService } from '../../services/flights.service';
 
 @Component({
   selector: 'world-explorer-destination',
@@ -23,7 +23,7 @@ export class DestinationComponent implements OnInit, OnDestroy {
   constructor(private _flightsService: FlightsService){}
 
   ngOnInit(): void {
-    this._subscription = this._flightsService.getPlacePhoto(this.destinations[0].city.name)
+    this._subscription = this._flightsService.getCityPhoto(this.destinations[0].city.name)
     .subscribe(response => this.imgReference = response.photo_reference);
   }
 

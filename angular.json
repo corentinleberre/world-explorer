@@ -3,7 +3,6 @@
   "projects": {
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
-    "world-explorer": "apps/world-explorer",
-    "world-explorer-e2e": "apps/world-explorer-e2e"
+    "world-explorer": "apps/world-explorer"
   }
 }

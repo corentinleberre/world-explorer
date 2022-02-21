@@ -18,13 +18,16 @@ export class FeaturedComponent {
   constructor(private _formBuilder: FormBuilder){
     this.formGroup = this._formBuilder.group({
       people1: ['', Validators.required],
-      people2: ['', Validators.required]
+      people2: ['', Validators.required],
+      start: ['', Validators.required],
+      end: ['', Validators.required]
     });
   }
 
   public onSubmit(): void {
     if(this.formGroup.valid) {
-      this.formSubmitEvent.emit(this.formGroup.value)
+      console.log(this.formGroup.value);
+      this.formSubmitEvent.emit(this.formGroup.value);
     }
   }
 }

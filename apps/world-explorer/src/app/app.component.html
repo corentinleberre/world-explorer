@@ -2,12 +2,10 @@
 
 <world-explorer-featured (formSubmitEvent)="fetchDestinations($event)"></world-explorer-featured>
 
-<ng-container *ngIf="cheapFlights.length > 0">
-  <div class="grid grid-cols-3 gap-4">
-    <ng-container *ngFor="let cheapDestination of cheapFlights; let index = index;">
-      <world-explorer-destination [destinations]="cheapDestination" [highlight]="index === 0"></world-explorer-destination>
-    </ng-container>
+<world-explorer-carousel [flights]="flights"></world-explorer-carousel>
+
+<ng-container *ngIf="loading">
+  <div class="w-full p-10">
+    <ngx-skeleton-loader count="15" appearance="line" animation="pulse"></ngx-skeleton-loader>
   </div>
 </ng-container>
-
-<!-- https://dribbble.com/shots/16397479/attachments/10032306?mode=media -->

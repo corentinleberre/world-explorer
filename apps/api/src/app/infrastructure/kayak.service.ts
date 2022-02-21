@@ -6,7 +6,7 @@ import { map } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable()
-export class AppService {
+export class KayakService {
 
   constructor(private httpService: HttpService) {}
 
@@ -25,16 +25,5 @@ export class AppService {
     return `https://www.kayak.fr/s/horizon/exploreapi/destinations?airport=${airport}&budget=&depart=${depart}&return=${retour}&duration=&exactDates=true&flightMaxStops=0&stopsFilterActive=true&topRightLat=&topRightLon=&bottomLeftLat=&bottomLeftLon=&zoomLevel=0&selectedMarker=&themeCode=&selectedDestination=`;
   }
   
-  public getGooglePlaceResult(city: string): Observable<AxiosResponse<PlaceResponse>> {
-    return this.httpService.get<PlaceResponse>(this.buildGpUrl(city));
-  }
-
-  private buildGpUrl(city: string): string{
-    return `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${city}&key=AIzaSyBVAi2KqwhSG3cCtopMZ0VRVBABTpukpYc`;
-  }
-
-  private buildGpPhotos(reference: string) {
-    return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${reference}&key=AIzaSyBVAi2KqwhSG3cCtopMZ0VRVBABTpukpYc`;
-  }
-
+  
 }
