@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FlightsService } from './services/flights.service';
@@ -12,10 +11,25 @@ import { FeaturedComponent } from './components/featured/featured.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CommonModule } from '@angular/common';
+import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 
 @NgModule({
-  imports: [BrowserModule, CommonModule, HttpClientModule, ReactiveFormsModule, FontAwesomeModule, NgxSkeletonLoaderModule],
-  declarations: [AppComponent, DestinationComponent, NavbarComponent, FeaturedComponent, CarouselComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FontAwesomeModule,
+    NgxSkeletonLoaderModule,
+    AutocompleteLibModule
+  ],
+  declarations: [
+    AppComponent,
+    DestinationComponent,
+    NavbarComponent,
+    FeaturedComponent,
+    CarouselComponent
+  ],
   providers: [FlightsService],
   bootstrap: [AppComponent],
 })

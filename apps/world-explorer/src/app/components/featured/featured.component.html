@@ -1,5 +1,5 @@
-<div class="grid grid-cols-6 gap-4">
-    <div class="col-start-2 col-span-4 featured rounded-lg shadow-lg">
+<div class="flex flex-row justify-center">
+    <div class="w-11/12 featured rounded-lg shadow-lg">
         <h1 class="featured-block featured-heading">Comparateur de vols multi-départs</h1>
         <h1 class="featured-block featured-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis velit ad sapiente optio ratione aliquam voluptatem architecto quo ipsum, sequi odio, doloremque nihil laborum iusto voluptate nulla totam esse maiores.</h1>
         <div class="flex flex-row justify-center">
@@ -25,3 +25,23 @@
         </div>
     </div>
 </div>
+
+<div class="ng-autocomplete">
+    <ng-autocomplete
+      [data]="airports"
+      [searchKeyword]="'city'"
+      placeholder="Code aéroport"
+      (selected)='selectEvent($event)'
+      [itemTemplate]="itemTemplate"
+      [notFoundTemplate]="notFoundTemplate"
+      [minQueryLength]="3"
+      ></ng-autocomplete>
+  
+    <ng-template #itemTemplate let-item>
+      <a [innerHTML]="item.name"></a>
+    </ng-template>
+  
+    <ng-template #notFoundTemplate let-notFound>
+      <div [innerHTML]="notFound"></div>
+    </ng-template>
+  </div>

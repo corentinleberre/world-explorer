@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, Input, Renderer2, ViewChild } fro
 import { Destination } from '@world-explorer/api-interfaces';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Observable, Subscription, fromEvent } from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'world-explorer-carousel',
@@ -27,6 +28,7 @@ export class CarouselComponent implements AfterViewInit {
   resizeObservable$!: Observable<Event>;
   resizeSubscription$!: Subscription;
 
+  public moment = moment;
 
   constructor(private _renderer: Renderer2) { }
 

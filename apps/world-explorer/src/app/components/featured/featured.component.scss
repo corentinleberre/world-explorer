@@ -1,3 +1,5 @@
+@import "tailwindcss/base";
+
 .featured {
     height: 400px;
     background: rgb(190,231,189);
@@ -30,4 +32,28 @@
 
 input {
     width: 140px;
+}
+
+.ng-autocomplete {
+    ::ng-deep .autocomplete-container {
+        width: 150px;
+        @apply bg-white shadow rounded-lg border-red-500 p-3;
+
+        .input-container {
+            input {
+                font-size: unset;
+                box-sizing: unset;
+                border: unset;
+                box-shadow: unset;
+                outline: unset;
+                background-color: unset;
+                color: unset;
+                width: unset;
+                padding: unset;
+                line-height: unset;
+                height: unset;
+            }
+        }
+    }
+
 }

@@ -1,6 +1,15 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { airports } from '../../utils/airport-code.util';
+
+
+interface AirportCode {
+    name: string;
+    city: string;
+    country: string;
+    code: string;
+} 
 
 @Component({
   selector: 'world-explorer-featured',
@@ -12,8 +21,15 @@ export class FeaturedComponent {
 
   public formGroup: FormGroup;
 
+  public airports: AirportCode[] = airports;
+
   @Output()
   formSubmitEvent = new EventEmitter<any>();
+
+  selectEvent(item: AirportCode) {
+    console.log(item);
+  }
+
 
   constructor(private _formBuilder: FormBuilder){
     this.formGroup = this._formBuilder.group({
