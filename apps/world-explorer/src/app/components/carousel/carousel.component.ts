@@ -39,7 +39,7 @@ export class CarouselComponent implements AfterViewInit {
   }
 
   private _isArrowDisplayable(): boolean {
-    return Math.floor(window.innerWidth / 350) < 5;
+    return true;
   }
 
   private _slide(): void {
