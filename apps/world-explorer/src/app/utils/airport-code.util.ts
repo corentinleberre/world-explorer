@@ -1,4 +1,11 @@
-export const airports = [
+export interface AirportCode {
+  name: string;
+  city: string;
+  country: string;
+  code: string;
+}
+
+export const airports: AirportCode[] = [
     {
       "name": "Hartsfield Jackson Atlanta Intl",
       "city": "Atlanta",

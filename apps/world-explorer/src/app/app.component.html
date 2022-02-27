@@ -2,14 +2,16 @@
 
 <world-explorer-featured (formSubmitEvent)="fetchDestinations($event)"></world-explorer-featured>
 
-<ng-container *ngIf="flights.length > 0">
-  <world-explorer-carousel [flights]="flights"></world-explorer-carousel>
-</ng-container>
-
 <ng-container *ngIf="loading">
   <div class="flex flex-row justify-center">
     <div class="w-11/12 py-10">
-      <ngx-skeleton-loader count="15" appearance="line" animation="pulse"></ngx-skeleton-loader>
+      <ngx-skeleton-loader count="8" appearance="line" animation="pulse"></ngx-skeleton-loader>
     </div>
   </div>
+</ng-container>
+
+<ng-container *ngIf="flightsArray.length > 0">
+  <ng-container *ngFor="let flights of flightsArray">
+    <world-explorer-carousel [flights]="flights"></world-explorer-carousel>
+  </ng-container>
 </ng-container>

@@ -1,15 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { airports } from '../../utils/airport-code.util';
-
-
-interface AirportCode {
-    name: string;
-    city: string;
-    country: string;
-    code: string;
-} 
+import { AirportCode, airports } from '../../utils/airport-code.util';
 
 @Component({
   selector: 'world-explorer-featured',

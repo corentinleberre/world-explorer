@@ -1,9 +1,7 @@
 <div class="flex flex-row justify-center">
   <div class="w-11/12">
     <div class="p-3 mb-3">
-      <div class="border-l-2 border-l-blue-400">
-        Période du {{ moment(flights[0][0].departd).format('DD/MM/YYYY') }} au {{ moment(flights[0][0].returnd).format('DD/MM/YYYY') }}
-      </div>
+      Depuis {{ getCityByAirportCode(flights[0][0].originAirportShortName).name }} et {{ getCityByAirportCode(flights[0][1].originAirportShortName).name }} - Période du {{ moment(flights[0][0].departd).format('DD/MM/YYYY') }} au {{ moment(flights[0][0].returnd).format('DD/MM/YYYY') }}
     </div>
     <div class="carousel-wrapper">
       <div #carouselList class="carousel-list">

@@ -9,7 +9,7 @@ import { FlightsService } from './services/flights.service';
 })
 export class AppComponent {
 
-  flights: Destination[][] = [];
+  flightsArray: Destination[][][] = [];
 
   loading = false;
 
@@ -18,13 +18,12 @@ export class AppComponent {
   ) {}
 
   fetchDestinations(peoples: any): void {
-    this.flights = [];
     this.loading = true;
 
     this._flightsService.getFlights(peoples.people1, peoples.people2, peoples.start, peoples.end)
       .subscribe(flights => {
         this.loading = false;
-        this.flights = flights;
+        this.flightsArray = [flights, ...this.flightsArray];
       }
     );
   }
