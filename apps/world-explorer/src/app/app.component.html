@@ -1,6 +1,6 @@
 <world-explorer-navbar></world-explorer-navbar>
 
-<world-explorer-featured (formSubmitEvent)="fetchDestinations($event)"></world-explorer-featured>
+<world-explorer-featured [isLoading]="loading" (formSubmitEvent)="fetchDestinations($event)"></world-explorer-featured>
 
 <ng-container *ngIf="loading">
   <world-explorer-loading-carousel></world-explorer-loading-carousel>

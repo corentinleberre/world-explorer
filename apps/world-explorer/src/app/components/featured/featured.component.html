@@ -53,8 +53,8 @@
                     <input type="date" id="end" name="trip-end" formControlName="end" class="bg-purple-white shadow rounded-lg border-0 p-3">
                 </div>
                 <div>
-                    <button type="submit" class="hover:scale-110">
-                    <fa-icon [icon]="faMagnifyingGlass" size="2x"></fa-icon>
+                    <button type="submit" class="{{ !isLoading ? 'hover:scale-110' : '' }}" [disabled]="isLoading">
+                      <fa-icon [icon]="faMagnifyingGlass" size="2x"></fa-icon>
                     </button>
                 </div>
             </form>

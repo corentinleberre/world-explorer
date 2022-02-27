@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { AirportCode, airports } from '../../utils/airport-code.util';
@@ -9,18 +9,18 @@ import { AirportCode, airports } from '../../utils/airport-code.util';
   styleUrls: ['./featured.component.scss']
 })
 export class FeaturedComponent {
+
   public faMagnifyingGlass = faMagnifyingGlass;
 
   public formGroup: FormGroup;
 
   public airports: AirportCode[] = airports;
 
-  @Output()
-  formSubmitEvent = new EventEmitter<any>();
+  @Input()
+  public isLoading: boolean = false;
 
-  selectEvent(item: AirportCode, controlName: string) {
-    this.formGroup.controls[controlName].setValue(item.code);
-  }
+  @Output()
+  public formSubmitEvent = new EventEmitter<any>();
 
   constructor(private _formBuilder: FormBuilder){
     this.formGroup = this._formBuilder.group({
@@ -31,10 +31,15 @@ export class FeaturedComponent {
     });
   }
 
+  public selectEvent(item: AirportCode, controlName: string) {
+    this.formGroup.controls[controlName].setValue(item.code);
+  }
+
   public onSubmit(): void {
     if(this.formGroup.valid) {
       console.log(this.formGroup.value);
       this.formSubmitEvent.emit(this.formGroup.value);
     }
   }
+
 }
