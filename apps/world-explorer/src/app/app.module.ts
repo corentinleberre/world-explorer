@@ -12,6 +12,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CommonModule } from '@angular/common';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
+import { LoadingDestinationComponent } from './components/loading-destination/loading-destination.component';
+import { LoadingCarouselComponent } from './components/loading-carousel/loading-carousel.component';
 
 @NgModule({
   imports: [
@@ -28,7 +30,9 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
     DestinationComponent,
     NavbarComponent,
     FeaturedComponent,
-    CarouselComponent
+    CarouselComponent,
+    LoadingDestinationComponent,
+    LoadingCarouselComponent
   ],
   providers: [FlightsService],
   bootstrap: [AppComponent],

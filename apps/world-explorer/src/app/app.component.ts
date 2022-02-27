@@ -13,9 +13,7 @@ export class AppComponent {
 
   loading = false;
 
-  constructor(
-    private _flightsService: FlightsService
-  ) {}
+  constructor(private _flightsService: FlightsService) {}
 
   fetchDestinations(peoples: any): void {
     this.loading = true;
@@ -27,5 +25,5 @@ export class AppComponent {
       }
     );
   }
-
+  
 }

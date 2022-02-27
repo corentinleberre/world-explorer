@@ -3,14 +3,10 @@
 <world-explorer-featured (formSubmitEvent)="fetchDestinations($event)"></world-explorer-featured>
 
 <ng-container *ngIf="loading">
-  <div class="flex flex-row justify-center">
-    <div class="w-11/12 py-10">
-      <ngx-skeleton-loader count="8" appearance="line" animation="pulse"></ngx-skeleton-loader>
-    </div>
-  </div>
+  <world-explorer-loading-carousel></world-explorer-loading-carousel>
 </ng-container>
 
-<ng-container *ngIf="flightsArray.length > 0">
+<ng-container *ngIf="flightsArray.length">
   <ng-container *ngFor="let flights of flightsArray">
     <world-explorer-carousel [flights]="flights"></world-explorer-carousel>
   </ng-container>
