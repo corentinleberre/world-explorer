@@ -26,10 +26,9 @@ export class FeaturedComponent {
   @Output()
   formSubmitEvent = new EventEmitter<any>();
 
-  selectEvent(item: AirportCode) {
-    console.log(item);
+  selectEvent(item: AirportCode, controlName: string) {
+    this.formGroup.controls[controlName].setValue(item.code);
   }
-
 
   constructor(private _formBuilder: FormBuilder){
     this.formGroup = this._formBuilder.group({

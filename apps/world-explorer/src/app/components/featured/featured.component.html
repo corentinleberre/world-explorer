@@ -5,10 +5,46 @@
         <div class="flex flex-row justify-center">
             <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="featured-input rounded-lg shadow-lg flex flex-row p-5 justify-around items-center">
                 <div class="flex flex-row items-center">
-                    <label for="people1" class="pr-3">P1</label>
-                    <input type="text" name="people1" formControlName="people1" class="bg-purple-white shadow rounded-lg border-0 p-3" placeholder="Code aéroport">
-                    <label for="people2" class="px-3">P2</label>
-                    <input type="text" name="people2" formControlName="people2" class="bg-purple-white shadow rounded-lg border-0 p-3" placeholder="Code aéroport">
+                    <label class="pr-3">P1</label>
+                    <div class="ng-autocomplete">
+                        <ng-autocomplete
+                          [data]="airports"
+                          [searchKeyword]="'city'"
+                          placeholder="Code aéroport"
+                          (selected)='selectEvent($event, "people1")'
+                          [itemTemplate]="itemTemplate"
+                          [notFoundTemplate]="notFoundTemplate"
+                          [minQueryLength]="3"
+                          ></ng-autocomplete>
+                      
+                        <ng-template #itemTemplate let-item>
+                          <a [innerHTML]="item.name"></a>
+                        </ng-template>
+                      
+                        <ng-template #notFoundTemplate let-notFound>
+                          <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                    </div>
+                    <label class="px-3">P2</label>
+                    <div class="ng-autocomplete">
+                        <ng-autocomplete
+                          [data]="airports"
+                          [searchKeyword]="'city'"
+                          placeholder="Code aéroport"
+                          (selected)='selectEvent($event, "people2")'
+                          [itemTemplate]="itemTemplate"
+                          [notFoundTemplate]="notFoundTemplate"
+                          [minQueryLength]="3"
+                          ></ng-autocomplete>
+                      
+                        <ng-template #itemTemplate let-item>
+                          <a [innerHTML]="item.name"></a>
+                        </ng-template>
+                      
+                        <ng-template #notFoundTemplate let-notFound>
+                          <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                    </div>
                 </div>
                 <div class="flex flex-row items-center">
                     <label for="start" class="px-3">Départ</label>
@@ -24,24 +60,4 @@
             </form>
         </div>
     </div>
-</div>
-
-<div class="ng-autocomplete">
-    <ng-autocomplete
-      [data]="airports"
-      [searchKeyword]="'city'"
-      placeholder="Code aéroport"
-      (selected)='selectEvent($event)'
-      [itemTemplate]="itemTemplate"
-      [notFoundTemplate]="notFoundTemplate"
-      [minQueryLength]="3"
-      ></ng-autocomplete>
-  
-    <ng-template #itemTemplate let-item>
-      <a [innerHTML]="item.name"></a>
-    </ng-template>
-  
-    <ng-template #notFoundTemplate let-notFound>
-      <div [innerHTML]="notFound"></div>
-    </ng-template>
 </div>

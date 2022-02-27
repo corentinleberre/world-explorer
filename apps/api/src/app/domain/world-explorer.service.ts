@@ -12,26 +12,44 @@ export class WorldExplorerService {
         private readonly _googlePlaceService: GooglePlaceService
     ) { }
 
-    public getCheapFlightsForTwoPeople(airport1, airport2, depart, retour): Observable<Destination[][]> {
+    public getCheapFlightsForTwoPeople(airport1: string, airport2: string, depart: string, retour: string): Observable<Destination[][]> {
         return zip(
           this._kayakService.getFlightsOrdonateByPrice(airport1, depart, retour),
           this._kayakService.getFlightsOrdonateByPrice(airport2, depart, retour)
-          ).pipe(map(data => {
-            let [result1, result2] = [...data];
-    
-            result1 = result1.filter(destination => destination.flightInfo.price != 999999);
-            result2 = result2.filter(destination => destination.flightInfo.price != 999999);
-    
-            const cityResult1 = result1.map(destination => destination.city.id);
-            const cityResult2 = result2.map(destination => destination.city.id);
-    
-            const intersection = cityResult1.filter(x => cityResult2.includes(x));
-    
-            const filtered = [...result1, ...result2].filter(destination => intersection.includes(destination.city.id));
-            const groupedAndOrderedPrice = this.groupByDestination(filtered).sort((a, b) => a.map(d => d.flightInfo.price).reduce((p, v) => p + v) - b.map(d => d.flightInfo.price).reduce((p, v) => p + v));
-    
-            return groupedAndOrderedPrice;
-          }));
+        ).pipe(
+            map(data => {
+                let [result1, result2] = [...data];
+            
+                result1 = result1.filter(destination => destination.flightInfo.price != 999999);
+                result2 = result2.filter(destination => destination.flightInfo.price != 999999);
+        
+                const cityResult1 = result1.map(destination => destination.city.id);
+                const cityResult2 = result2.map(destination => destination.city.id);
+        
+                const intersection = cityResult1.filter(x => cityResult2.includes(x));
+        
+                const filtered = [...result1, ...result2].filter(destination => intersection.includes(destination.city.id));
+
+                const groupedAndOrderedPrice = this.groupByDestination(filtered)
+                .map(destination => this.sortDestinationWithMultiplesDepartures(destination, airport1, airport2))
+                .sort((a, b) => a.map(d => d.flightInfo.price)
+                    .reduce((p, v) => p + v) - b.map(d => d.flightInfo.price).reduce((p, v) => p + v)
+                );
+        
+                return groupedAndOrderedPrice;
+            })
+        );
+    }
+
+    private sortDestinationWithMultiplesDepartures(destinations: Destination[], airport1: string, airport2: string): Destination[] {
+        if (destinations.length > 2) {
+            let test =  destinations.sort((a, b) => a.flightInfo.price - b.flightInfo.price);
+            return [
+                test.find(d => d.originAirportShortName == airport1),
+                test.find(d => d.originAirportShortName == airport2)
+            ];
+        }
+        return destinations;
     }
 
     private groupByDestination(arr: Destination[]): Destination[][] {

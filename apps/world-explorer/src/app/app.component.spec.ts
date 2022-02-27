@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, waitForAsync } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FeaturedComponent } from './components/featured/featured.component';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { FormBuilder } from '@angular/forms';
+import { AutocompleteComponent } from 'angular-ng-autocomplete';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [AppComponent],
+      declarations: [AppComponent, NavbarComponent, FeaturedComponent, FaIconComponent, AutocompleteComponent],
+      providers: [FormBuilder],
       imports: [HttpClientModule],
     }).compileComponents();
   }));

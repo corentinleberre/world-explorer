@@ -35,6 +35,7 @@ input {
 }
 
 .ng-autocomplete {
+    width: unset;
     ::ng-deep .autocomplete-container {
         width: 150px;
         @apply bg-white shadow rounded-lg border-red-500 p-3;

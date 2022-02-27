@@ -33,8 +33,8 @@ export class CarouselComponent implements AfterViewInit {
   constructor(private _renderer: Renderer2) { }
 
   ngAfterViewInit(): void {
-    this.resizeObservable$ = fromEvent(window, 'resize')
-    this.resizeSubscription$ = this.resizeObservable$.subscribe((_) => this.displayArrow = this._isArrowDisplayable())
+    this.resizeObservable$ = fromEvent(window, 'resize');
+    this.resizeSubscription$ = this.resizeObservable$.subscribe((_) => this.displayArrow = this._isArrowDisplayable());
     this._renderer.listen(this.arrowRef.nativeElement, 'click', () => this._slide());
   }
 

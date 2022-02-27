@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Destination } from '@world-explorer/api-interfaces';
-import { Subscription } from 'rxjs';
+import { Subscription, tap } from 'rxjs';
 import { FlightsService } from '../../services/flights.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class DestinationComponent implements OnInit, OnDestroy {
   constructor(private _flightsService: FlightsService){}
 
   ngOnInit(): void {
-    this._subscription = this._flightsService.getCityPhoto(this.destinations[0].city.name)
+    this._subscription = this._flightsService.getCityPhoto(this.destinations[0].city.name.normalize('NFD').replace(/[\u0300-\u036f]/g, ''))
     .subscribe(response => this.imgReference = response.photo_reference);
   }
 
@@ -40,8 +40,7 @@ export class DestinationComponent implements OnInit, OnDestroy {
   }
 
   get imgLink(): string {
-    const normalisedReference = this.imgReference.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${normalisedReference}&key=AIzaSyBVAi2KqwhSG3cCtopMZ0VRVBABTpukpYc`;
+    return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${this.imgReference}&key=AIzaSyBVAi2KqwhSG3cCtopMZ0VRVBABTpukpYc`;
   }
 
 }
