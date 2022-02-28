@@ -38,6 +38,8 @@ input {
     width: unset;
     ::ng-deep .autocomplete-container {
         width: 150px;
+        height: unset;
+        
         @apply bg-white shadow rounded-lg border-red-500 p-3;
 
         .input-container {

@@ -17,7 +17,7 @@
             </div>
             <ng-container *ngFor="let destination of destinations; let index = index;">
                 <div class="p-4 border-b text-xs text-gray-700">
-                    <a href="{{ bookingLink(index) }}">
+                    <a href="{{ bookingLink(index) }}" target="_blank">
                         <span class="flex items-center mb-1">
                             <span class="text-sm font-semibold">A partir de {{ destinations[index].originAirportShortName }}</span>&nbsp;<span class="font-bold text-xl">{{ destinations[index].flightInfo.price}}</span>&nbsp;<span class="text-sm font-semibold">€</span>
                         </span>
