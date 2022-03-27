@@ -1,7 +1,7 @@
 @import "tailwindcss/base";
 
 .featured {
-    height: 400px;
+    height: 300px;
     background: rgb(190,231,189);
     background-image: linear-gradient(90deg, rgba(190,231,189,1) 1%, rgba(190,230,191,1) 28%, rgba(183,215,222,1) 61%, rgba(176,178,228,1) 100%);
 }
@@ -24,14 +24,15 @@
 } 
 
 .featured-input {
-    margin-top: 5%;
     background-color: white;
-    height: 100px;
-    width: 80%;
 }
 
 input {
     width: 140px;
+}
+
+.featured-form {
+    margin-bottom: -50px;
 }
 
 .ng-autocomplete {

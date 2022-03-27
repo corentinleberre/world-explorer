@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Destination } from '@world-explorer/api-interfaces';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Observable, Subscription, fromEvent } from 'rxjs';
 import * as moment from 'moment';
 import { FlightsService } from '../../services/flights.service';
@@ -17,6 +17,8 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   public flights: Destination[][] = [];
 
   faChevronRight = faChevronRight;
+
+  faChevronLeft = faChevronLeft;
 
   @ViewChild('carouselArrow') 
   arrowRef!: ElementRef<any>;
@@ -45,7 +47,8 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     this.resizeObservable$ = fromEvent(window, 'resize');
     this.resizeSubscription$ = this.resizeObservable$.subscribe((_) => this.displayArrow = this._isArrowDisplayable());
 
-    this._renderer.listen(this.arrowRef.nativeElement, 'click', () => this._slide());
+    this._renderer.listen(this.arrowRef.nativeElement.querySelector("#arrow-left"), 'click', () => this._slide("left"));
+    this._renderer.listen(this.arrowRef.nativeElement.querySelector("#arrow-right"), 'click', () => this._slide("right"));
   }
 
   public getCityByAirportCode(airportCode: string): AirportCode {
@@ -56,13 +59,21 @@ export class CarouselComponent implements OnInit, AfterViewInit {
     return Math.floor(window.innerWidth / 350) < this.flights.length;;
   }
 
-  private _slide(): void {
+  private _slide(direction: string): void {
     const ratio = Math.floor(window.innerWidth / 350);
-    this.clickCounter++;
+    let transformValue;
 
+    if(direction === "right"){
+      this.clickCounter++;
+      transformValue = -350; 
+    } else {
+      this.clickCounter--;
+      transformValue = +350; 
+    }
+    
     if (this.flights.length - (4 + this.clickCounter) + (4 - ratio) >= 0) {
         const matrix = new WebKitCSSMatrix(getComputedStyle(this.listRef.nativeElement).transform);
-        this._renderer.setStyle(this.listRef.nativeElement, 'transform', `translateX(${matrix.m41 - 350}px)`);
+        this._renderer.setStyle(this.listRef.nativeElement, 'transform', `translateX(${matrix.m41 + transformValue}px)`);
     } else {
       this._renderer.setStyle(this.listRef.nativeElement, 'transform', 'translateX(0)');
       this.clickCounter = 0;
