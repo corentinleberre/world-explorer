@@ -14,12 +14,7 @@ export class AppComponent {
 
   constructor(private _flightsService: FlightsService) {}
 
-  fetchDestinations(peoples: {
-    people1: string;
-    people2: string;
-    start: string;
-    end: string;
-  }): void {
+  fetchDestinations(peoples: any): void {
     this.loading = true;
 
     this._flightsService
