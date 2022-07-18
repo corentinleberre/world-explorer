@@ -6,6 +6,7 @@
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "start": "nx run-many --target=serve --all",
+    "start:prod": "node dist/apps/api/main.js",
     "build": "nx build",
     "build:web": "nx build -- world-explorer",
     "build:api": "nx build -- api",
