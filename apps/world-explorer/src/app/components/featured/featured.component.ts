@@ -7,15 +7,14 @@ import * as moment from 'moment';
 @Component({
   selector: 'world-explorer-featured',
   templateUrl: './featured.component.html',
-  styleUrls: ['./featured.component.scss']
+  styleUrls: ['./featured.component.scss'],
 })
 export class FeaturedComponent {
-
   @Input()
-  public isLoading: boolean = false;
+  public isLoading = false;
 
   @Output()
-  public formSubmitEvent = new EventEmitter<any>();
+  public formSubmitEvent = new EventEmitter<unknown>();
 
   public faMagnifyingGlass = faMagnifyingGlass;
 
@@ -27,8 +26,10 @@ export class FeaturedComponent {
 
   constructor(private _formBuilder: FormBuilder) {
     this.formGroup = this._buildFormGroup();
-    this.formGroup.controls['start'].valueChanges.subscribe(
-      (value) => this.formGroup.controls['end'].setValue(moment(value).add(1, 'days').format('YYYY-MM-DD'))
+    this.formGroup.controls['start'].valueChanges.subscribe((value) =>
+      this.formGroup.controls['end'].setValue(
+        moment(value).add(1, 'days').format('YYYY-MM-DD')
+      )
     );
   }
 
@@ -48,8 +49,7 @@ export class FeaturedComponent {
       people1: ['', Validators.required],
       people2: ['', Validators.required],
       start: [moment().format('YYYY-MM-DD'), Validators.required],
-      end: [moment().add(1, 'days').format('YYYY-MM-DD'), Validators.required]
+      end: [moment().add(1, 'days').format('YYYY-MM-DD'), Validators.required],
     });
   }
-
 }

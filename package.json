@@ -8,6 +8,7 @@
     "start": "nx run-many --target=serve --all",
     "build": "nx build",
     "build:web": "nx build -- world-explorer",
+    "build:api": "nx build -- api",
     "test": "nx test"
   },
   "private": true,
