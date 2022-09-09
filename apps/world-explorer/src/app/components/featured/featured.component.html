@@ -1,89 +1,104 @@
-<div class="flex flex-row justify-center">
-  <div class="w-11/12 featured rounded-lg drop-shadow-xl relative">
-    <h1 class="featured-block featured-heading">
+<div class="flex flex-col justify-center items-center">
+  <div
+    class="w-11/12 featured rounded-lg drop-shadow-xl flex flex-col items-center p-5"
+  >
+    <h1 class="featured-block featured-heading pb-3">
       Comparateur de vols multi-départs
     </h1>
     <h1 class="featured-block featured-content">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis velit ad
-      sapiente optio ratione aliquam voluptatem architecto quo ipsum, sequi
-      odio, doloremque nihil laborum iusto voluptate nulla totam esse maiores.
+      Bienvenue ! Trouvez un endroit ou vous rejoindre pour votre prochain
+      voyage.
     </h1>
+  </div>
+  <div class="w-11/12 md:w-10/12 p-3">
     <div class="flex flex-row justify-center">
       <form
         [formGroup]="formGroup"
         (ngSubmit)="onSubmit()"
-        class="w-11/12 md:w-10/12 lg:w-8/12 featured-form absolute bottom-0 featured-input rounded-lg shadow-md border-solid border-2 border-sky-500"
+        class="bottom-0 featured-input rounded-lg shadow-md border-solid border-2 border-sky-500"
       >
         <div
-          class="w-full flex flex-row flex-wrap p-5 justify-around items-center"
+          class="flex flex-row items-center flex-wrap bg-[#f0f3f5] rounded-lg"
         >
-          <div class="flex flex-row items-center">
-            <label class="pr-3">P1</label>
-            <div class="ng-autocomplete">
-              <ng-autocomplete
-                [data]="airports"
-                [searchKeyword]="'city'"
-                placeholder="Code aéroport"
-                (selected)="selectEvent($event, 'people1')"
-                [itemTemplate]="itemTemplate"
-                [notFoundTemplate]="notFoundTemplate"
-                [minQueryLength]="3"
-              ></ng-autocomplete>
-              <ng-template #itemTemplate let-item>
-                <a [innerHTML]="item.name"></a>
-              </ng-template>
+          <div
+            class="ng-autocomplete p-2 flex flex-row items-center justify-center flex-wrap grow"
+          >
+            <ng-autocomplete
+              [data]="airports"
+              [searchKeyword]="'city'"
+              placeholder="Aéroport de départ n°1"
+              (selected)="selectEvent($event, 'people1')"
+              [itemTemplate]="itemTemplate"
+              [notFoundTemplate]="notFoundTemplate"
+              [minQueryLength]="3"
+            ></ng-autocomplete>
+            <ng-template #itemTemplate let-item>
+              <a [innerHTML]="item.name"></a>
+            </ng-template>
 
-              <ng-template #notFoundTemplate let-notFound>
-                <div [innerHTML]="notFound"></div>
-              </ng-template>
-            </div>
-            <label class="px-3">P2</label>
-            <div class="ng-autocomplete">
-              <ng-autocomplete
-                [data]="airports"
-                [searchKeyword]="'city'"
-                placeholder="Code aéroport"
-                (selected)="selectEvent($event, 'people2')"
-                [itemTemplate]="itemTemplate"
-                [notFoundTemplate]="notFoundTemplate"
-                [minQueryLength]="3"
-              ></ng-autocomplete>
-
-              <ng-template #itemTemplate let-item>
-                <a [innerHTML]="item.name"></a>
-              </ng-template>
-
-              <ng-template #notFoundTemplate let-notFound>
-                <div [innerHTML]="notFound"></div>
-              </ng-template>
-            </div>
+            <ng-template #notFoundTemplate let-notFound>
+              <div [innerHTML]="notFound"></div>
+            </ng-template>
           </div>
-          <div class="flex flex-row items-center">
-            <label for="start" class="px-3">Départ</label>
+          <div
+            class="ng-autocomplete p-2 flex flex-row items-center justify-center flex-wrap grow"
+          >
+            <ng-autocomplete
+              [data]="airports"
+              [searchKeyword]="'city'"
+              placeholder="Aéroport de départ n°2"
+              (selected)="selectEvent($event, 'people2')"
+              [itemTemplate]="itemTemplate"
+              [notFoundTemplate]="notFoundTemplate"
+              [minQueryLength]="3"
+            ></ng-autocomplete>
+
+            <ng-template #itemTemplate let-item>
+              <a [innerHTML]="item.name"></a>
+            </ng-template>
+
+            <ng-template #notFoundTemplate let-notFound>
+              <div [innerHTML]="notFound"></div>
+            </ng-template>
+          </div>
+          <div
+            class="flex flex-row items-center justify-start flex-wrap grow p-3"
+          >
+            <label for="start" class="w-1/2 px-5">Départ : </label>
             <input
               type="date"
               id="start"
               name="trip-start"
               formControlName="start"
-              class="bg-purple-white shadow rounded-lg border-0 p-3"
+              class="bg-purple-white shadow rounded-lg border-0 p-3 w-1/2"
             />
-            <label for="end" class="px-3">Retour:</label>
+          </div>
+
+          <div
+            class="flex flex-row items-center justify-start flex-wrap grow p-3"
+          >
+            <label for="end" class="w-1/2 px-5">Retour : </label>
             <input
               type="date"
               id="end"
               name="trip-end"
               formControlName="end"
-              class="bg-purple-white shadow rounded-lg border-0 p-3"
+              class="bg-purple-white shadow rounded-lg border-0 p-3 w-1/2"
             />
           </div>
-          <div>
-            <button
-              type="submit"
-              class="{{ !isLoading ? 'hover:scale-110' : '' }}"
-              [disabled]="isLoading"
+
+          <div
+            class="flex flex-row items-center justify-center flex-wrap grow p-2"
+          >
+            <div
+              class="featured-submit w-5 p-5 flex flex-row items-center justify-center rounded-lg {{
+                !isLoading ? 'hover:scale-110' : ''
+              }}"
             >
-              <fa-icon [icon]="faMagnifyingGlass" size="2x"></fa-icon>
-            </button>
+              <button type="submit" [disabled]="isLoading">
+                <fa-icon [icon]="faMagnifyingGlass" size="1x"></fa-icon>
+              </button>
+            </div>
           </div>
         </div>
       </form>

@@ -1,7 +1,6 @@
 @import 'tailwindcss/base';
 
 .featured {
-  height: 300px;
   background: rgb(190, 231, 189);
   background-image: linear-gradient(
     90deg,
@@ -12,20 +11,14 @@
   );
 }
 
-.featured-block {
-  margin-left: 10%;
-}
-
 .featured-heading {
-  margin-top: 5%;
   font-size: 25px;
-  font-weight: 600;
 }
 
 .featured-content {
-  margin-top: 3%;
   font-size: 16px;
   font-weight: 200;
+  text-align: center;
   width: 60%;
 }
 
@@ -33,18 +26,22 @@
   background-color: white;
 }
 
-input {
-  width: 140px;
-}
-
-.featured-form {
-  margin-bottom: -50px;
+.featured-submit {
+  background-image: linear-gradient(
+    90deg,
+    rgba(190, 231, 189, 1) 1%,
+    rgba(190, 230, 191, 1) 28%,
+    rgba(183, 215, 222, 1) 61%,
+    rgba(176, 178, 228, 1) 100%
+  );
+  width: 35px;
+  height: 35px;
 }
 
 .ng-autocomplete {
   width: unset;
   ::ng-deep .autocomplete-container {
-    width: 150px;
+    width: 100%;
     height: unset;
 
     @apply bg-white shadow rounded-lg border-red-500 p-3;

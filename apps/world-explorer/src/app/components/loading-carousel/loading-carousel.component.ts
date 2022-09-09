@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class LoadingCarouselComponent {
   get loadingItems(): number[] {
-    return [...Array(Math.floor(window.innerWidth / 350)).keys()];
+    return [...Array(Math.floor(window.innerWidth / 350) + 1).keys()];
   }
 }
