@@ -10,6 +10,7 @@
     "build": "nx build",
     "build:web": "nx build -- world-explorer",
     "build:api": "nx build -- api",
+    "prettify": "prettier --write .",
     "test": "nx test"
   },
   "private": true,
@@ -67,7 +68,7 @@
     "jest": "27.2.3",
     "jest-preset-angular": "11.1.1",
     "postcss": "^8.4.5",
-    "prettier": "^2.5.1",
+    "prettier": "^2.7.1",
     "tailwindcss": "^3.0.2",
     "ts-jest": "27.0.5",
     "typescript": "~4.5.2"

@@ -1,6 +1,6 @@
 {
   "name": "Node.js",
-  
+
   "build": {
     "dockerfile": "Dockerfile",
     "args": { "VARIANT": "14" }
@@ -9,13 +9,13 @@
   "settings": {},
 
   "extensions": [
-	"dbaeumer.vscode-eslint",
-	"nrwl.angular-console",
-	"angular.ng-template",
-	"ghaschel.vscode-angular-html",
-	"bradlc.vscode-tailwindcss",
-	"austenc.tailwind-docs"
-],
-  
+    "dbaeumer.vscode-eslint",
+    "nrwl.angular-console",
+    "angular.ng-template",
+    "ghaschel.vscode-angular-html",
+    "bradlc.vscode-tailwindcss",
+    "austenc.tailwind-docs"
+  ],
+
   "remoteUser": "node"
 }

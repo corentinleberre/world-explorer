@@ -1,7 +1,10 @@
 <world-explorer-navbar></world-explorer-navbar>
 
 <div class="pb-10">
-  <world-explorer-featured [isLoading]="loading" (formSubmitEvent)="fetchDestinations($event)"></world-explorer-featured>
+  <world-explorer-featured
+    [isLoading]="loading"
+    (formSubmitEvent)="fetchDestinations($event)"
+  ></world-explorer-featured>
 </div>
 
 <ng-container *ngIf="loading">

@@ -5,14 +5,23 @@ import { Observable } from 'rxjs';
 import { AirportCode, airports } from '../utils/airport-code.util';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FlightsService {
+  constructor(private _http: HttpClient) {}
 
-  constructor(private _http: HttpClient){};
-
-  public getFlights(people1: string, people2: string, start: string, end: string): Observable<Destination[][]> {
-    return this._http.get<Destination[][]>(`/api/flights-explorer?airport1=${people1}&airport2=${people2}&depart=${start.replace(/-/g, '')}&retour=${end.replace(/-/g, '')}`);
+  public getFlights(
+    people1: string,
+    people2: string,
+    start: string,
+    end: string
+  ): Observable<Destination[][]> {
+    return this._http.get<Destination[][]>(
+      `/api/flights-explorer?airport1=${people1}&airport2=${people2}&depart=${start.replace(
+        /-/g,
+        ''
+      )}&retour=${end.replace(/-/g, '')}`
+    );
   }
 
   public getCityPhoto(city: string): Observable<PlacePhoto> {
@@ -20,6 +29,9 @@ export class FlightsService {
   }
 
   public getCityByAirportCode(airportCode: string): AirportCode {
-    return airports.find(airport => airport.code === airportCode) ?? { name: airportCode} as AirportCode;
+    return (
+      airports.find((airport) => airport.code === airportCode) ??
+      ({ name: airportCode } as AirportCode)
+    );
   }
 }

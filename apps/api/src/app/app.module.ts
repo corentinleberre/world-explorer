@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { HttpModule } from '@nestjs/axios'
+import { HttpModule } from '@nestjs/axios';
 
 import { WorldExplorerController } from './application/world-explorer.controller';
 import { KayakService } from './infrastructure/kayak.service';
@@ -9,10 +9,6 @@ import { GooglePlaceService } from './infrastructure/google-place.service';
 @Module({
   imports: [HttpModule],
   controllers: [WorldExplorerController],
-  providers: [
-    WorldExplorerService,
-    KayakService,
-    GooglePlaceService
-  ],
+  providers: [WorldExplorerService, KayakService, GooglePlaceService],
 })
 export class AppModule {}

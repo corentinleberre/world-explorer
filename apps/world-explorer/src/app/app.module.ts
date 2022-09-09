@@ -23,7 +23,7 @@ import { LoadingCarouselComponent } from './components/loading-carousel/loading-
     ReactiveFormsModule,
     FontAwesomeModule,
     NgxSkeletonLoaderModule,
-    AutocompleteLibModule
+    AutocompleteLibModule,
   ],
   declarations: [
     AppComponent,
@@ -32,7 +32,7 @@ import { LoadingCarouselComponent } from './components/loading-carousel/loading-
     FeaturedComponent,
     CarouselComponent,
     LoadingDestinationComponent,
-    LoadingCarouselComponent
+    LoadingCarouselComponent,
   ],
   providers: [FlightsService],
   bootstrap: [AppComponent],

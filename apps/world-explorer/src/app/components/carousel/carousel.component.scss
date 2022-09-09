@@ -1,25 +1,25 @@
 .carousel-wrapper {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .carousel-list {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    transform: translateX(0);
-    transition: all 1s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  transform: translateX(0);
+  transition: all 1s ease-in-out;
 }
 
 .carousel-item {
-    min-width: 350px;
+  min-width: 350px;
 }
 
 .carousel-arrow {
-    font-size: 80px;
-    position: absolute;
-    top: 90px;
-    color: lightgray;
-    opacity: 0.5;
-    cursor: pointer;
+  font-size: 80px;
+  position: absolute;
+  top: 90px;
+  color: lightgray;
+  opacity: 0.5;
+  cursor: pointer;
 }

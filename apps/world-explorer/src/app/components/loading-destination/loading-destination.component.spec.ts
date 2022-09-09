@@ -8,9 +8,8 @@ describe('LoadingDestinationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoadingDestinationComponent ]
-    })
-    .compileComponents();
+      declarations: [LoadingDestinationComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

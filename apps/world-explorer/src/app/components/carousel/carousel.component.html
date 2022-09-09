@@ -1,18 +1,35 @@
 <div class="flex flex-row justify-center">
   <div class="w-11/12">
     <div class="p-3 mb-3">
-      Depuis {{ getCityByAirportCode(flights[0][0].originAirportShortName).name }} et {{ getCityByAirportCode(flights[0][1].originAirportShortName).name }} - Période du {{ moment(flights[0][0].departd).format('DD/MM/YYYY') }} au {{ moment(flights[0][0].returnd).format('DD/MM/YYYY') }}
+      Depuis
+      {{ getCityByAirportCode(flights[0][0].originAirportShortName).name }} et
+      {{ getCityByAirportCode(flights[0][1].originAirportShortName).name }} -
+      Période du {{ moment(flights[0][0].departd).format('DD/MM/YYYY') }} au
+      {{ moment(flights[0][0].returnd).format('DD/MM/YYYY') }}
     </div>
     <div class="carousel-wrapper">
       <div #carouselList class="carousel-list">
-        <ng-container *ngFor="let destination of flights; let index = index;">
-          <world-explorer-destination class="carousel-item" [destinations]="destination" [highlight]="index === 0"></world-explorer-destination>
+        <ng-container *ngFor="let destination of flights; let index = index">
+          <world-explorer-destination
+            class="carousel-item"
+            [destinations]="destination"
+            [highlight]="index === 0"
+          ></world-explorer-destination>
         </ng-container>
       </div>
       <div #carouselArrow>
         <ng-container *ngIf="displayArrow">
-          <fa-icon [icon]="faChevronLeft"  [ngStyle]="{'visibility': clickCounter > 0 ? 'visible' : 'hidden'}" class="carousel-arrow left-0 pr-2" id="arrow-left"></fa-icon>
-          <fa-icon [icon]="faChevronRight" class="carousel-arrow right-0 pr-2" id="arrow-right"></fa-icon>
+          <fa-icon
+            [icon]="faChevronLeft"
+            [ngStyle]="{ visibility: clickCounter > 0 ? 'visible' : 'hidden' }"
+            class="carousel-arrow left-0 pr-2"
+            id="arrow-left"
+          ></fa-icon>
+          <fa-icon
+            [icon]="faChevronRight"
+            class="carousel-arrow right-0 pr-2"
+            id="arrow-right"
+          ></fa-icon>
         </ng-container>
       </div>
     </div>

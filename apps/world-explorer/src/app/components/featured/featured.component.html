@@ -1,64 +1,92 @@
 <div class="flex flex-row justify-center">
-    <div class="w-11/12 featured rounded-lg drop-shadow-xl relative">
-        <h1 class="featured-block featured-heading">Comparateur de vols multi-départs</h1>
-        <h1 class="featured-block featured-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis velit ad sapiente optio ratione aliquam voluptatem architecto quo ipsum, sequi odio, doloremque nihil laborum iusto voluptate nulla totam esse maiores.</h1>
-        <div class="flex flex-row justify-center">
-            <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="w-11/12 md:w-10/12 lg:w-8/12 featured-form absolute bottom-0 featured-input rounded-lg shadow-md border-solid border-2 border-sky-500">
-               <div class="w-full flex flex-row flex-wrap p-5 justify-around items-center">
-                  <div class="flex flex-row items-center">
-                    <label class="pr-3">P1</label>
-                    <div class="ng-autocomplete">
-                        <ng-autocomplete
-                          [data]="airports"
-                          [searchKeyword]="'city'"
-                          placeholder="Code aéroport"
-                          (selected)='selectEvent($event, "people1")'
-                          [itemTemplate]="itemTemplate"
-                          [notFoundTemplate]="notFoundTemplate"
-                          [minQueryLength]="3"
-                          ></ng-autocomplete>
-                        <ng-template #itemTemplate let-item>
-                          <a [innerHTML]="item.name"></a>
-                        </ng-template>
-                      
-                        <ng-template #notFoundTemplate let-notFound>
-                          <div [innerHTML]="notFound"></div>
-                        </ng-template>
-                    </div>
-                    <label class="px-3">P2</label>
-                    <div class="ng-autocomplete">
-                        <ng-autocomplete
-                          [data]="airports"
-                          [searchKeyword]="'city'"
-                          placeholder="Code aéroport"
-                          (selected)='selectEvent($event, "people2")'
-                          [itemTemplate]="itemTemplate"
-                          [notFoundTemplate]="notFoundTemplate"
-                          [minQueryLength]="3"
-                          ></ng-autocomplete>
-                      
-                        <ng-template #itemTemplate let-item>
-                          <a [innerHTML]="item.name"></a>
-                        </ng-template>
-                      
-                        <ng-template #notFoundTemplate let-notFound>
-                          <div [innerHTML]="notFound"></div>
-                        </ng-template>
-                    </div>
-                </div>
-                <div class="flex flex-row items-center">
-                    <label for="start" class="px-3">Départ</label>
-                    <input type="date" id="start" name="trip-start" formControlName="start" class="bg-purple-white shadow rounded-lg border-0 p-3">
-                    <label for="end" class="px-3">Retour:</label>
-                    <input type="date" id="end" name="trip-end" formControlName="end" class="bg-purple-white shadow rounded-lg border-0 p-3">
-                </div>
-                <div>
-                    <button type="submit" class="{{ !isLoading ? 'hover:scale-110' : '' }}" [disabled]="isLoading">
-                      <fa-icon [icon]="faMagnifyingGlass" size="2x"></fa-icon>
-                    </button>
-                </div>
-               </div>
-            </form>
+  <div class="w-11/12 featured rounded-lg drop-shadow-xl relative">
+    <h1 class="featured-block featured-heading">
+      Comparateur de vols multi-départs
+    </h1>
+    <h1 class="featured-block featured-content">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis velit ad
+      sapiente optio ratione aliquam voluptatem architecto quo ipsum, sequi
+      odio, doloremque nihil laborum iusto voluptate nulla totam esse maiores.
+    </h1>
+    <div class="flex flex-row justify-center">
+      <form
+        [formGroup]="formGroup"
+        (ngSubmit)="onSubmit()"
+        class="w-11/12 md:w-10/12 lg:w-8/12 featured-form absolute bottom-0 featured-input rounded-lg shadow-md border-solid border-2 border-sky-500"
+      >
+        <div
+          class="w-full flex flex-row flex-wrap p-5 justify-around items-center"
+        >
+          <div class="flex flex-row items-center">
+            <label class="pr-3">P1</label>
+            <div class="ng-autocomplete">
+              <ng-autocomplete
+                [data]="airports"
+                [searchKeyword]="'city'"
+                placeholder="Code aéroport"
+                (selected)="selectEvent($event, 'people1')"
+                [itemTemplate]="itemTemplate"
+                [notFoundTemplate]="notFoundTemplate"
+                [minQueryLength]="3"
+              ></ng-autocomplete>
+              <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.name"></a>
+              </ng-template>
+
+              <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+              </ng-template>
+            </div>
+            <label class="px-3">P2</label>
+            <div class="ng-autocomplete">
+              <ng-autocomplete
+                [data]="airports"
+                [searchKeyword]="'city'"
+                placeholder="Code aéroport"
+                (selected)="selectEvent($event, 'people2')"
+                [itemTemplate]="itemTemplate"
+                [notFoundTemplate]="notFoundTemplate"
+                [minQueryLength]="3"
+              ></ng-autocomplete>
+
+              <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.name"></a>
+              </ng-template>
+
+              <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+              </ng-template>
+            </div>
+          </div>
+          <div class="flex flex-row items-center">
+            <label for="start" class="px-3">Départ</label>
+            <input
+              type="date"
+              id="start"
+              name="trip-start"
+              formControlName="start"
+              class="bg-purple-white shadow rounded-lg border-0 p-3"
+            />
+            <label for="end" class="px-3">Retour:</label>
+            <input
+              type="date"
+              id="end"
+              name="trip-end"
+              formControlName="end"
+              class="bg-purple-white shadow rounded-lg border-0 p-3"
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              class="{{ !isLoading ? 'hover:scale-110' : '' }}"
+              [disabled]="isLoading"
+            >
+              <fa-icon [icon]="faMagnifyingGlass" size="2x"></fa-icon>
+            </button>
+          </div>
         </div>
+      </form>
     </div>
+  </div>
 </div>
