@@ -2,13 +2,11 @@
   <div
     class="w-11/12 featured rounded-lg drop-shadow-xl flex flex-col items-center p-5"
   >
-    <h1 class="featured-block featured-heading pb-3">
-      Comparateur de vols multi-départs
-    </h1>
-    <h1 class="featured-block featured-content">
+    <p class="text-xl md:text-3xl pb-3">Comparateur de vols multi-départs</p>
+    <p class="featured-block featured-content">
       Bienvenue ! Trouvez un endroit ou vous rejoindre pour votre prochain
       voyage.
-    </h1>
+    </p>
   </div>
   <div class="w-11/12 md:w-10/12 p-3">
     <div class="flex flex-row justify-center">
@@ -61,30 +59,32 @@
               <div [innerHTML]="notFound"></div>
             </ng-template>
           </div>
-          <div
-            class="flex flex-row items-center justify-start flex-wrap grow p-3"
-          >
-            <label for="start" class="w-1/2 px-5">Départ : </label>
-            <input
-              type="date"
-              id="start"
-              name="trip-start"
-              formControlName="start"
-              class="bg-purple-white shadow rounded-lg border-0 p-3 w-1/2"
-            />
-          </div>
+          <div class="inline sm:flex">
+            <div
+              class="flex flex-row items-center justify-start flex-wrap grow p-3"
+            >
+              <label for="start" class="w-1/2 px-5">Départ : </label>
+              <input
+                type="date"
+                id="start"
+                name="trip-start"
+                formControlName="start"
+                class="bg-purple-white shadow rounded-lg border-0 p-3 w-1/2"
+              />
+            </div>
 
-          <div
-            class="flex flex-row items-center justify-start flex-wrap grow p-3"
-          >
-            <label for="end" class="w-1/2 px-5">Retour : </label>
-            <input
-              type="date"
-              id="end"
-              name="trip-end"
-              formControlName="end"
-              class="bg-purple-white shadow rounded-lg border-0 p-3 w-1/2"
-            />
+            <div
+              class="flex flex-row items-center justify-start flex-wrap grow p-3"
+            >
+              <label for="end" class="w-1/2 px-5">Retour : </label>
+              <input
+                type="date"
+                id="end"
+                name="trip-end"
+                formControlName="end"
+                class="bg-purple-white shadow rounded-lg border-0 p-3 w-1/2"
+              />
+            </div>
           </div>
 
           <div
@@ -92,11 +92,15 @@
           >
             <div
               class="featured-submit w-5 p-5 flex flex-row items-center justify-center rounded-lg {{
-                !isLoading ? 'hover:scale-110' : ''
+                !isLoading ? 'hover:scale-105' : ''
               }}"
             >
               <button type="submit" [disabled]="isLoading">
-                <fa-icon [icon]="faMagnifyingGlass" size="1x"></fa-icon>
+                <fa-icon
+                  [icon]="isLoading ? faCircleNotch : faMagnifyingGlass"
+                  size="1x"
+                  [classes]="isLoading ? ['animate-spin'] : ['']"
+                ></fa-icon>
               </button>
             </div>
           </div>

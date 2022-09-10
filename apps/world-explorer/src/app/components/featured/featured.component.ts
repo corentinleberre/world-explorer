@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import {
+  faMagnifyingGlass,
+  faCircleNotch,
+} from '@fortawesome/free-solid-svg-icons';
 import { AirportCode, airports } from '../../utils/airport-code.util';
 import * as moment from 'moment';
 
@@ -17,6 +20,8 @@ export class FeaturedComponent {
   public formSubmitEvent = new EventEmitter<unknown>();
 
   public faMagnifyingGlass = faMagnifyingGlass;
+
+  public faCircleNotch = faCircleNotch;
 
   public moment = moment;
 
