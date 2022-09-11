@@ -1,5 +1,4 @@
 import {
-  AfterViewChecked,
   AfterViewInit,
   Component,
   ElementRef,
@@ -12,6 +11,7 @@ import { Destination } from '@world-explorer/api-interfaces';
 import {
   faChevronLeft,
   faChevronRight,
+  faCircleChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { Observable, Subscription, fromEvent } from 'rxjs';
 import * as moment from 'moment';
@@ -30,6 +30,8 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   faChevronRight = faChevronRight;
 
   faChevronLeft = faChevronLeft;
+
+  faCircleChevronRight = faCircleChevronRight;
 
   @ViewChild('carousel')
   scrollRef!: ElementRef<HTMLElement>;

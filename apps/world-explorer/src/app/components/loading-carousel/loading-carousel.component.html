@@ -1,9 +1,25 @@
-<div class="flex flex-row justify-center">
-  <div class="w-11/12 py-10 flex flex-row overflow-hidden">
-    <ng-container *ngFor="let i of loadingItems">
-      <world-explorer-loading-destination
-        class="loading-destination"
-      ></world-explorer-loading-destination>
-    </ng-container>
+<div class="flex flex-col items-center p-3 mb-3">
+  <div class="w-11/12">
+    <div class="px-4 w-2/5 rounded-full">
+      <ngx-skeleton-loader
+        count="1"
+        appearance="line"
+        animation="pulse"
+      ></ngx-skeleton-loader>
+    </div>
+    <div class="px-4 w-3/5 rounded-full">
+      <ngx-skeleton-loader
+        count="1"
+        appearance="line"
+        animation="pulse"
+      ></ngx-skeleton-loader>
+    </div>
+    <div class="flex flex-row overflow-hidden">
+      <ng-container *ngFor="let i of loadingItems">
+        <world-explorer-loading-destination
+          class="loading-destination"
+        ></world-explorer-loading-destination>
+      </ng-container>
+    </div>
   </div>
 </div>

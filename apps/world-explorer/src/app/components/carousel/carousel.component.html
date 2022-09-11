@@ -1,10 +1,17 @@
 <div class="flex flex-row justify-center">
   <div class="w-11/12">
-    <div class="p-3 mb-3">
-      Depuis
-      {{ getCityByAirportCode(flights[0][0].originAirportShortName).name }} et
-      {{ getCityByAirportCode(flights[0][1].originAirportShortName).name }} -
-      Période du {{ moment(flights[0][0].departd).format('DD/MM/YYYY') }} au
+    <div class="p-4">
+      <fa-icon [icon]="faCircleChevronRight" size="1x"></fa-icon> Depuis
+      <span class="font-semibold">
+        {{ getCityByAirportCode(flights[0][0].originAirportShortName).name }} 
+      </span>
+      ({{ getCityByAirportCode(flights[0][0].originAirportShortName).country }}) 
+      et
+      <span class="font-semibold">
+        {{ getCityByAirportCode(flights[0][1].originAirportShortName).name }} 
+      </span>
+      ({{ getCityByAirportCode(flights[0][1].originAirportShortName).country }}) 
+      - Période du {{ moment(flights[0][0].departd).format('DD/MM/YYYY') }} au
       {{ moment(flights[0][0].returnd).format('DD/MM/YYYY') }}
     </div>
     <div class="carousel-wrapper">
