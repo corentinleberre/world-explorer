@@ -33,13 +33,17 @@
   height: 35px;
 }
 
+.flex-row-center {
+  @apply flex flex-row items-center;
+}
+
 .ng-autocomplete {
-  width: unset;
+  @apply w-full sm:w-auto;
   ::ng-deep .autocomplete-container {
     width: 100%;
     height: unset;
 
-    @apply bg-white shadow rounded-lg border-red-500 p-3;
+    @apply bg-white shadow rounded-lg p-3;
 
     .input-container {
       input {

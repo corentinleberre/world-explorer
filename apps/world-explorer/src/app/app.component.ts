@@ -1,5 +1,12 @@
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { Destination } from '@world-explorer/api-interfaces';
+import { fromEvent, Observable } from 'rxjs';
 import { FlightsService } from './services/flights.service';
 
 @Component({
@@ -7,12 +14,26 @@ import { FlightsService } from './services/flights.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   flightsArray: Destination[][][] = [];
 
   loading = false;
 
+  displayBackToTop: boolean = false;
+
+  scrollObservable$!: Observable<Event>;
+
   constructor(private _flightsService: FlightsService) {}
+
+  ngAfterViewInit(): void {
+    this.scrollObservable$ = fromEvent(window, 'scroll');
+    this.scrollObservable$.subscribe(
+      () =>
+        (this.displayBackToTop =
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20)
+    );
+  }
 
   fetchDestinations(peoples: any): void {
     this.loading = true;
@@ -23,5 +44,10 @@ export class AppComponent {
         this.loading = false;
         this.flightsArray = [flights, ...this.flightsArray];
       });
+  }
+
+  backToTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 }

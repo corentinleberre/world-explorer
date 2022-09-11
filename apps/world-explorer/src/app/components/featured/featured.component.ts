@@ -38,21 +38,29 @@ export class FeaturedComponent {
     );
   }
 
-  public selectEvent(item: AirportCode, controlName: string) {
-    this.formGroup.controls[controlName].setValue(item.code);
+  public setControlValue(controlName: string, value: unknown) {
+    this.formGroup.controls[controlName].setValue(value);
   }
 
   public onSubmit(): void {
     if (this.formGroup.valid) {
-      console.log(this.formGroup.value);
       this.formSubmitEvent.emit(this.formGroup.value);
     }
   }
 
+  public submitBtnClasses(): Array<string> {
+    const classes = ['opacity-30'];
+    if (this.formGroup.valid) {
+      classes[0] = 'opacity-100';
+      if (this.isLoading) classes.push('animate-spin');
+    }
+    return classes;
+  }
+
   private _buildFormGroup(): FormGroup {
     return this._formBuilder.group({
-      people1: ['', Validators.required],
-      people2: ['', Validators.required],
+      people1: [null, Validators.required],
+      people2: [null, Validators.required],
       start: [moment().format('YYYY-MM-DD'), Validators.required],
       end: [moment().add(1, 'days').format('YYYY-MM-DD'), Validators.required],
     });

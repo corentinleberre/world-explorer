@@ -2,7 +2,9 @@
   <div
     class="w-11/12 featured rounded-lg drop-shadow-xl flex flex-col items-center p-5"
   >
-    <p class="text-xl md:text-3xl pb-3">Comparateur de vols multi-départs</p>
+    <p class="text-lg text-center md:text-2xl pb-3">
+      Comparateur de vols multi-départs
+    </p>
     <p class="featured-block featured-content">
       Bienvenue ! Trouvez un endroit ou vous rejoindre pour votre prochain
       voyage.
@@ -15,20 +17,19 @@
         (ngSubmit)="onSubmit()"
         class="bottom-0 featured-input rounded-lg shadow-md border-solid border-2 border-sky-500"
       >
-        <div
-          class="flex flex-row items-center flex-wrap bg-[#f0f3f5] rounded-lg"
-        >
+        <div class="flex-row-center flex-wrap bg-[#f0f3f5] rounded-lg">
           <div
-            class="ng-autocomplete p-2 flex flex-row items-center justify-center flex-wrap grow"
+            class="ng-autocomplete p-2 flex-row-center justify-center flex-wrap grow"
           >
             <ng-autocomplete
+              placeholder="Aéroport de départ n°1"
               [data]="airports"
               [searchKeyword]="'city'"
-              placeholder="Aéroport de départ n°1"
-              (selected)="selectEvent($event, 'people1')"
+              (selected)="setControlValue('people1', $event.code)"
               [itemTemplate]="itemTemplate"
               [notFoundTemplate]="notFoundTemplate"
               [minQueryLength]="3"
+              (inputCleared)="setControlValue('people1', null)"
             ></ng-autocomplete>
             <ng-template #itemTemplate let-item>
               <a [innerHTML]="item.name"></a>
@@ -39,16 +40,17 @@
             </ng-template>
           </div>
           <div
-            class="ng-autocomplete p-2 flex flex-row items-center justify-center flex-wrap grow"
+            class="ng-autocomplete p-2 flex-row-center justify-center flex-wrap grow"
           >
             <ng-autocomplete
+              placeholder="Aéroport de départ n°2"
               [data]="airports"
               [searchKeyword]="'city'"
-              placeholder="Aéroport de départ n°2"
-              (selected)="selectEvent($event, 'people2')"
+              (selected)="setControlValue('people2', $event.code)"
               [itemTemplate]="itemTemplate"
               [notFoundTemplate]="notFoundTemplate"
               [minQueryLength]="3"
+              (inputCleared)="setControlValue('people2', null)"
             ></ng-autocomplete>
 
             <ng-template #itemTemplate let-item>
@@ -60,46 +62,40 @@
             </ng-template>
           </div>
           <div class="inline sm:flex">
-            <div
-              class="flex flex-row items-center justify-start flex-wrap grow p-3"
-            >
-              <label for="start" class="w-1/2 px-5">Départ : </label>
+            <div class="flex-row-center justify-start flex-wrap grow p-3">
+              <label for="start" class="pr-2">Départ :</label>
               <input
                 type="date"
                 id="start"
                 name="trip-start"
                 formControlName="start"
-                class="bg-purple-white shadow rounded-lg border-0 p-3 w-1/2"
+                class="bg-purple-white shadow rounded-lg border-0 p-3"
               />
             </div>
 
-            <div
-              class="flex flex-row items-center justify-start flex-wrap grow p-3"
-            >
-              <label for="end" class="w-1/2 px-5">Retour : </label>
+            <div class="flex-row-center justify-start flex-wrap grow p-3">
+              <label for="end" class="pr-2">Retour : </label>
               <input
                 type="date"
                 id="end"
                 name="trip-end"
                 formControlName="end"
-                class="bg-purple-white shadow rounded-lg border-0 p-3 w-1/2"
+                class="bg-purple-white shadow rounded-lg border-0 p-3"
               />
             </div>
           </div>
 
-          <div
-            class="flex flex-row items-center justify-center flex-wrap grow p-2"
-          >
+          <div class="flex-row-center justify-center flex-wrap grow p-2">
             <div
-              class="featured-submit w-5 p-5 flex flex-row items-center justify-center rounded-lg {{
+              class="featured-submit w-5 p-5 flex-row-center justify-center rounded-lg {{
                 !isLoading ? 'hover:scale-105' : ''
               }}"
             >
-              <button type="submit" [disabled]="isLoading">
+              <button type="submit" [disabled]="!formGroup.valid || isLoading">
                 <fa-icon
                   [icon]="isLoading ? faCircleNotch : faMagnifyingGlass"
                   size="1x"
-                  [classes]="isLoading ? ['animate-spin'] : ['']"
+                  [classes]="submitBtnClasses()"
                 ></fa-icon>
               </button>
             </div>

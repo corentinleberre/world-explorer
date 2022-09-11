@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   AfterViewInit,
   Component,
   ElementRef,
@@ -29,6 +30,9 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   faChevronRight = faChevronRight;
 
   faChevronLeft = faChevronLeft;
+
+  @ViewChild('carousel')
+  scrollRef!: ElementRef<HTMLElement>;
 
   @ViewChild('carouselArrow')
   arrowRef!: ElementRef<HTMLElement>;
@@ -69,6 +73,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
       'click',
       () => this._slide('right')
     );
+    this.scrollRef.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 
   public getCityByAirportCode(airportCode: string): AirportCode {
