@@ -33,6 +33,11 @@
   height: 35px;
 }
 
+fa-icon {
+  ::ng-deep svg {
+    pointer-events: none;
+  }
+}
 .flex-row-center {
   @apply flex flex-row items-center;
 }

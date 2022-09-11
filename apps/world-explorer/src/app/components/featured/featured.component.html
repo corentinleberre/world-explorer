@@ -86,19 +86,19 @@
           </div>
 
           <div class="flex-row-center justify-center flex-wrap grow p-2">
-            <div
-              class="featured-submit w-5 p-5 flex-row-center justify-center rounded-lg {{
-                !isLoading ? 'hover:scale-105' : ''
-              }}"
-            >
-              <button type="submit" [disabled]="!formGroup.valid || isLoading">
+            <button role="button" type="submit" [disabled]="!formGroup.valid || isLoading">
+              <div
+                class="featured-submit w-full p-5 md:p-3 flex-row-center justify-center rounded-lg {{
+                  !isLoading ? 'hover:scale-105' : ''
+                }}"
+              >
                 <fa-icon
                   [icon]="isLoading ? faCircleNotch : faMagnifyingGlass"
                   size="1x"
                   [classes]="submitBtnClasses()"
                 ></fa-icon>
-              </button>
-            </div>
+              </div>
+            </button>
           </div>
         </div>
       </form>
