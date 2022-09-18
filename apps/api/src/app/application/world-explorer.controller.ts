@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 
 import { Destination, PlacePhoto } from '@world-explorer/api-interfaces';
 import { Observable } from 'rxjs';
-import { WorldExplorerService } from '../domain/world-explorer.service';
+import { WorldExplorerService } from './world-explorer.service';
 
 @Controller()
 export class WorldExplorerController {
@@ -27,6 +27,6 @@ export class WorldExplorerController {
   public getGooglePlaceImgReference(
     @Query('city') city
   ): Observable<PlacePhoto> {
-    return this._worldExplorer.getPhotos(city);
+    return this._worldExplorer.getDestinationPhotos(city);
   }
 }

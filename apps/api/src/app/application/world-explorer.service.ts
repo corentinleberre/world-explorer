@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Destination, PlacePhoto } from '@world-explorer/api-interfaces';
 import { map, Observable, zip } from 'rxjs';
-import { GooglePlaceService } from '../infrastructure/google-place.service';
-import { KayakService } from '../infrastructure/kayak.service';
+import { GooglePlaceService } from './google-place.service';
+import { KayakService } from './kayak.service';
 
 @Injectable()
 export class WorldExplorerService {
@@ -82,9 +82,9 @@ export class WorldExplorerService {
     return Array.from(map.values());
   }
 
-  public getPhotos(city: string): Observable<PlacePhoto> {
+  public getDestinationPhotos(city: string): Observable<PlacePhoto> {
     return this._googlePlaceService
       .getPhotos(city)
-      .pipe(map((response) => response.data.results[0].photos[0]));
+      .pipe(map((response) => response.data.results[0]?.photos[0]));
   }
 }

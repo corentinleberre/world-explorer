@@ -1,14 +1,16 @@
-<ng-container *ngIf="imgReference">
+<ng-container *ngIf="imgReference || displayImg">
   <div class="p-4">
     <div
       class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden"
     >
-      <div class="relative pb-48 overflow-hidden">
-        <img
-          class="absolute inset-0 h-full w-full object-cover"
-          src="{{ imgLink }}"
-        />
-      </div>
+      <ng-container>
+        <div class="relative pb-48 overflow-hidden">
+          <img
+            class="absolute inset-0 h-full w-full object-cover"
+            src="{{ imgLink }}"
+          />
+        </div>
+      </ng-container>
 
       <div class="p-4 border-b">
         <ng-container *ngIf="highlight">
