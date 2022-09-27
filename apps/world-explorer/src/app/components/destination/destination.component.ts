@@ -38,7 +38,7 @@ export class DestinationComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.displayImg) this._subscription.unsubscribe();
+    if (this.displayImg) this._subscription.unsubscribe();
   }
 
   public bookingLink(id: number): string {

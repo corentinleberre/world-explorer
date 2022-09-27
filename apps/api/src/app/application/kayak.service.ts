@@ -13,13 +13,21 @@ import { Observable } from 'rxjs/internal/Observable';
 export class KayakService {
   constructor(private httpService: HttpService) {}
 
-  public getFlights(
+  private getFlights(
     airport: string,
     depart: string,
     retour: string
   ): Observable<AxiosResponse<FlightsTrackerObjectResponse>> {
     const url = this.buildKayakUrl(airport, depart, retour);
     return this.httpService.get<FlightsTrackerObjectResponse>(url);
+  }
+
+  private buildKayakUrl(
+    airport: string,
+    depart: string,
+    retour: string
+  ): string {
+    return `https://www.kayak.fr/s/horizon/exploreapi/destinations?airport=${airport}&budget=&depart=${depart}&return=${retour}&duration=&exactDates=true&flightMaxStops=0&stopsFilterActive=true&topRightLat=&topRightLon=&bottomLeftLat=&bottomLeftLon=&zoomLevel=0&selectedMarker=&themeCode=&selectedDestination=`;
   }
 
   public getFlightsOrdonateByPrice(
@@ -34,13 +42,5 @@ export class KayakService {
         )
       )
     );
-  }
-
-  private buildKayakUrl(
-    airport: string,
-    depart: string,
-    retour: string
-  ): string {
-    return `https://www.kayak.fr/s/horizon/exploreapi/destinations?airport=${airport}&budget=&depart=${depart}&return=${retour}&duration=&exactDates=true&flightMaxStops=0&stopsFilterActive=true&topRightLat=&topRightLon=&bottomLeftLat=&bottomLeftLon=&zoomLevel=0&selectedMarker=&themeCode=&selectedDestination=`;
   }
 }
