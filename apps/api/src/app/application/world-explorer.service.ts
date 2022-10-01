@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
   Destination,
-  DestinationDTO,
   DestinationsDTO,
   PlacePhoto,
 } from '@world-explorer/api-interfaces';
@@ -22,8 +21,9 @@ export class WorldExplorerService {
     retour: string,
     maxStop: number
   ): Observable<Array<DestinationsDTO>> {
+    const airportsWithoutDuplicate = Array.from(new Set(airports));
     return zip(
-      ...airports.map((airport) =>
+      ...airportsWithoutDuplicate.map((airport) =>
         this._kayakService.getFlightsOrdonateByPrice(
           airport,
           depart,

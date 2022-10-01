@@ -43,6 +43,11 @@
               </ng-template>
             </div>
           </ng-container>
+          <div class="flex flex-row justify-center items-center rounded-full bg-white w-6 h-6 hover:scale-105">
+            <button (click)="addNewDestinationControl()">
+              <fa-icon [icon]="faAdd" size="1x"></fa-icon>
+            </button>
+          </div>
           <div class="inline sm:flex">
             <div class="flex-row-center justify-start flex-wrap grow p-3">
               <label for="start" class="pr-2">Départ :</label>
