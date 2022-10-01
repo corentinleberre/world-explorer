@@ -83,7 +83,10 @@ export class WorldExplorerService {
       .sort((a, b) => a.flightInfo.price - b.flightInfo.price);
     return {
       to: sorted[0].city.name,
-      totalPrice: sorted.map((d) => d.flightInfo.price).reduce((p, v) => p + v).toFixed(2),
+      totalPrice: sorted
+        .map((d) => d.flightInfo.price)
+        .reduce((p, v) => p + v)
+        .toFixed(2),
       flights: sorted,
     };
   }

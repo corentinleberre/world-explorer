@@ -1,5 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import {
   faMagnifyingGlass,
   faCircleNotch,
@@ -42,8 +49,13 @@ export class FeaturedComponent {
     this.formGroup.controls[controlName].setValue(value);
   }
 
+  public setPeoplesFormValue(index: number, value: unknown) {
+    this.peoplesFormArray.controls[index].setValue(value);
+  }
+
   public onSubmit(): void {
     if (this.formGroup.valid) {
+      console.log('featuredValue', this.formGroup.value);
       this.formSubmitEvent.emit(this.formGroup.value);
     }
   }
@@ -59,10 +71,24 @@ export class FeaturedComponent {
 
   private _buildFormGroup(): FormGroup {
     return this._formBuilder.group({
-      people1: [null, Validators.required],
-      people2: [null, Validators.required],
+      peoples: this._formBuilder.array([
+        this.destinationControls,
+        this.destinationControls,
+      ]),
       start: [moment().format('YYYY-MM-DD'), Validators.required],
       end: [moment().add(1, 'days').format('YYYY-MM-DD'), Validators.required],
     });
+  }
+
+  private get destinationControls(): FormControl {
+    return this._formBuilder.control('', Validators.required);
+  }
+
+  public get peoplesFormArray(): FormArray {
+    return this.formGroup.controls['peoples'] as FormArray;
+  }
+
+  public addNewDestinationControl(): void {
+    this.peoplesFormArray.push(this.destinationControls);
   }
 }
