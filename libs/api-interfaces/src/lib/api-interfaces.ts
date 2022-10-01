@@ -1,10 +1,9 @@
-export interface Message {
-  message: string;
+import { Destination } from '..';
+
+export interface DestinationsDTO {
+  to: string;
+  totalPrice: string;
+  flights: Array<DestinationDTO>;
 }
 
-export interface User {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-}
+export interface DestinationDTO extends Destination {}

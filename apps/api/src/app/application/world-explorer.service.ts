@@ -1,5 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Destination, PlacePhoto } from '@world-explorer/api-interfaces';
+import {
+  Destination,
+  DestinationDTO,
+  DestinationsDTO,
+  PlacePhoto,
+} from '@world-explorer/api-interfaces';
 import { map, Observable, zip } from 'rxjs';
 import { GooglePlaceService } from './google-place.service';
 import { KayakService } from './kayak.service';
@@ -14,19 +19,27 @@ export class WorldExplorerService {
   public getCommonFlights(
     airports: Array<string>,
     depart: string,
-    retour: string
-  ): Observable<Destination[][]> {
+    retour: string,
+    maxStop: number
+  ): Observable<Array<DestinationsDTO>> {
     return zip(
       ...airports.map((airport) =>
-        this._kayakService.getFlightsOrdonateByPrice(airport, depart, retour)
+        this._kayakService.getFlightsOrdonateByPrice(
+          airport,
+          depart,
+          retour,
+          maxStop
+        )
       )
     ).pipe(
-      map((destinationsAirportsApiResults) => {
-        const destinationsCityId = destinationsAirportsApiResults.map(
-          (airportResult) =>
-            airportResult
-              .filter((destination) => destination.flightInfo.price !== 999999)
-              .map((destination) => destination.city.id)
+      map((apiResult) =>
+        apiResult.map((result) =>
+          result.filter((d) => d.flightInfo.price !== 999999)
+        )
+      ),
+      map((airportsDestinations) => {
+        const destinationsCityId = airportsDestinations.map((destinations) =>
+          destinations.map((d) => d.city.id)
         );
 
         const commonDestinationBetweenAirport = Array.from(
@@ -35,11 +48,10 @@ export class WorldExplorerService {
           )
         );
 
-        const filteredDestinations = destinationsAirportsApiResults.map(
-          (destinations) =>
-            destinations.filter((d) =>
-              commonDestinationBetweenAirport.includes(d.city.id)
-            )
+        const filteredDestinations = airportsDestinations.map((destinations) =>
+          destinations.filter((d) =>
+            commonDestinationBetweenAirport.includes(d.city.id)
+          )
         );
 
         const newIntersectionGroupedAndOrdered = this.groupByDestination(
@@ -50,8 +62,8 @@ export class WorldExplorerService {
           )
           .sort((a, b) => {
             return (
-              a.map((d) => d.flightInfo.price).reduce((p, v) => p + v) -
-              b.map((d) => d.flightInfo.price).reduce((p, v) => p + v)
+              a.flights.map((d) => d.flightInfo.price).reduce((p, v) => p + v) -
+              b.flights.map((d) => d.flightInfo.price).reduce((p, v) => p + v)
             );
           });
 
@@ -63,16 +75,17 @@ export class WorldExplorerService {
   private sortDestinationWithNDepartures(
     destinations: Destination[],
     airports: Array<string>
-  ): Destination[] {
-    if (destinations.length > 2) {
-      return airports
-        .map((airport) =>
-          destinations.find((d) => d.originAirportShortName == airport)
-        )
-        .sort((a, b) => a.flightInfo.price - b.flightInfo.price)
-        .filter((destination) => destination !== undefined);
-    }
-    return destinations;
+  ): DestinationsDTO {
+    const sorted = airports
+      .map((airport) =>
+        destinations.find((d) => d.originAirportShortName == airport)
+      )
+      .sort((a, b) => a.flightInfo.price - b.flightInfo.price);
+    return {
+      to: sorted[0].city.name,
+      totalPrice: sorted.map((d) => d.flightInfo.price).reduce((p, v) => p + v).toFixed(2),
+      flights: sorted,
+    };
   }
 
   private groupByDestination(arr: Destination[]): Destination[][] {

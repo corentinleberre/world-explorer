@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 
-import { Destination, PlacePhoto } from '@world-explorer/api-interfaces';
+import { DestinationsDTO, PlacePhoto } from '@world-explorer/api-interfaces';
 import { Observable } from 'rxjs';
 import { WorldExplorerService } from './world-explorer.service';
 
@@ -12,10 +12,15 @@ export class WorldExplorerController {
   public getCommonFlightsForNPeople(
     @Query('airports') airports,
     @Query('depart') depart,
-    @Query('retour') retour
-  ): Observable<Destination[][]> {
-    console.log(airports);
-    return this._worldExplorer.getCommonFlights(airports, depart, retour);
+    @Query('retour') retour,
+    @Query('maxStop') maxStop = 0
+  ): Observable<DestinationsDTO[]> {
+    return this._worldExplorer.getCommonFlights(
+      airports,
+      depart,
+      retour,
+      maxStop
+    );
   }
 
   @Get('place-img')
