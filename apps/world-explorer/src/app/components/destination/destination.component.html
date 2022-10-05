@@ -1,9 +1,9 @@
-<ng-container *ngIf="imgReference || displayImg">
+<ng-container>
   <div class="p-4">
     <div
-      class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden"
+      class="c-card block bg-white shadow-lg hover:shadow-xl rounded-lg overflow-hidden"
     >
-      <ng-container>
+      <ng-container *ngIf="imgReference?.length || displayImg">
         <div class="relative pb-48 overflow-hidden">
           <img
             class="absolute inset-0 h-full w-full object-cover"
@@ -32,7 +32,7 @@
           <a href="{{ bookingLink(index) }}" target="_blank">
             <span class="flex items-center mb-1">
               <span class="text-sm font-semibold"
-                >A partir de
+                >A partir de &nbsp;
                 {{ destinations[index].originAirportShortName }}</span
               >&nbsp;<span class="font-bold text-xl">{{
                 destinations[index].flightInfo.price

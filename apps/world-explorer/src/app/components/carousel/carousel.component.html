@@ -2,7 +2,12 @@
   <div class="w-11/12">
     <div class="p-4">
       <ng-container
-        *ngFor="let airport of destinations[0].from; let i = index;; let first = first; let last = last"
+        *ngFor="
+          let airport of destinations[0].from;
+          let i = index;
+          let first = first;
+          let last = last
+        "
       >
         <ng-container *ngIf="first">
           <fa-icon [icon]="faCircleChevronRight" size="1x"></fa-icon> Depuis
@@ -10,16 +15,25 @@
         <ng-container *ngIf="!first && !last"> , </ng-container>
         <ng-container *ngIf="last"> et </ng-container>
         <span class="font-semibold">
-          {{ getCityByAirportCode(destinations[0].flights[i].originAirportShortName).name }}
+          {{
+            getCityByAirportCode(
+              destinations[0].flights[i].originAirportShortName
+            ).name
+          }}
         </span>
         <span>
           ({{
-            getCityByAirportCode(destinations[0].flights[i].originAirportShortName).country
+            getCityByAirportCode(
+              destinations[0].flights[i].originAirportShortName
+            ).country
           }})
         </span>
         <span *ngIf="last">
           - Période du
-          {{ moment(destinations[0].flights[i].departd).format('DD/MM/YYYY') }} au
+          {{
+            moment(destinations[0].flights[i].departd).format('DD/MM/YYYY')
+          }}
+          au
           {{ moment(destinations[0].flights[i].returnd).format('DD/MM/YYYY') }}
         </span>
       </ng-container>
