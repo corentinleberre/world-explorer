@@ -30,7 +30,6 @@ export class AppComponent implements AfterViewInit {
   }
 
   fetchDestinations(peoples: any): void {
-    console.log('received by app', peoples);
     this.loading = true;
 
     this._flightsService
