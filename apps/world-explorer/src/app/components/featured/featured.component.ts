@@ -57,7 +57,6 @@ export class FeaturedComponent {
 
   public onSubmit(): void {
     if (this.formGroup.valid) {
-      console.log('featuredValue', this.formGroup.value);
       this.formSubmitEvent.emit(this.formGroup.value);
     }
   }

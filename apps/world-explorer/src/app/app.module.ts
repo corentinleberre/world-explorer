@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { LoadingDestinationComponent } from './components/loading-destination/loading-destination.component';
 import { LoadingCarouselComponent } from './components/loading-carousel/loading-carousel.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { LoadingCarouselComponent } from './components/loading-carousel/loading-
     FontAwesomeModule,
     NgxSkeletonLoaderModule,
     AutocompleteLibModule,
+    SwiperModule,
   ],
   declarations: [
     AppComponent,

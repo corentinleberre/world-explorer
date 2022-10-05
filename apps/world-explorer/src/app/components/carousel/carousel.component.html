@@ -30,42 +30,25 @@
         </span>
         <span *ngIf="last">
           - Période du
-          {{
-            moment(destinations[0].flights[i].departd).format('DD/MM/YYYY')
-          }}
+          {{ moment(destinations[0].flights[i].departd).format('DD/MM/YYYY') }}
           au
           {{ moment(destinations[0].flights[i].returnd).format('DD/MM/YYYY') }}
         </span>
       </ng-container>
     </div>
-    <div class="carousel-wrapper">
-      <div #carouselList class="carousel-list">
+    <div class="w-full">
+      <swiper [config]="swiperConfig">
         <ng-container
           *ngFor="let destination of destinations; let index = index"
-        >
-          <world-explorer-destination
-            class="carousel-item"
-            [destinations]="destination.flights"
-            [highlight]="index === 0"
-          ></world-explorer-destination>
+          ><ng-template swiperSlide>
+            <world-explorer-destination
+              class="carousel-item"
+              [destinations]="destination.flights"
+              [highlight]="index === 0"
+            ></world-explorer-destination
+          ></ng-template>
         </ng-container>
-      </div>
-      <div #carouselArrow>
-        <ng-container *ngIf="displayArrow">
-          <fa-icon
-            [icon]="faChevronLeft"
-            [ngStyle]="{ visibility: clickCounter > 0 ? 'visible' : 'hidden' }"
-            class="carousel-arrow left-0 pr-2"
-            id="arrow-left"
-          ></fa-icon>
-          <fa-icon
-            [icon]="faChevronRight"
-            class="carousel-arrow right-0 pr-2"
-            id="arrow-right"
-          ></fa-icon>
-        </ng-container>
-      </div>
+      </swiper>
     </div>
   </div>
-  <div #carousel></div>
 </div>

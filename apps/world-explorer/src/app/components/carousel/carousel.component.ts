@@ -1,119 +1,53 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DestinationsDTO } from '@world-explorer/api-interfaces';
-import {
-  faChevronLeft,
-  faChevronRight,
-  faCircleChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
-import { Observable, Subscription, fromEvent } from 'rxjs';
+import { faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 import { FlightsService } from '../../services/flights.service';
 import { AirportCode } from '../../utils/airport-code.util';
+import SwiperCore, { Navigation, SwiperOptions } from 'swiper';
 
 @Component({
   selector: 'world-explorer-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
 })
-export class CarouselComponent implements OnInit, AfterViewInit {
+export class CarouselComponent implements OnInit {
   @Input()
   public destinations: DestinationsDTO[] = [];
 
-  faChevronRight = faChevronRight;
-
-  faChevronLeft = faChevronLeft;
-
-  faCircleChevronRight = faCircleChevronRight;
-
-  @ViewChild('carousel')
-  scrollRef!: ElementRef<HTMLElement>;
-
-  @ViewChild('carouselArrow')
-  arrowRef!: ElementRef<HTMLElement>;
-
-  @ViewChild('carouselList')
-  listRef!: ElementRef<HTMLElement>;
-
-  clickCounter = 0;
-  displayArrow = false;
-
-  resizeObservable$!: Observable<Event>;
-  resizeSubscription$!: Subscription;
+  public faCircleChevronRight = faCircleChevronRight;
 
   public moment = moment;
 
-  constructor(
-    private _renderer: Renderer2,
-    private _flightsService: FlightsService
-  ) {}
+  public swiperConfig: SwiperOptions = {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    pagination: false,
+    navigation: true,
+    scrollbar: { draggable: true },
+    breakpoints: {
+      600: {
+        slidesPerView: 2,
+        spaceBetween: 10,
+      },
+      900: {
+        slidesPerView: 4,
+        spaceBetween: 15,
+      },
+      1200: {
+        slidesPerView: 5,
+        spaceBetween: 20,
+      },
+    },
+  };
+
+  constructor(private _flightsService: FlightsService) {}
 
   ngOnInit(): void {
-    this.displayArrow = this._isArrowDisplayable();
-  }
-
-  ngAfterViewInit(): void {
-    this.resizeObservable$ = fromEvent(window, 'resize');
-    this.resizeSubscription$ = this.resizeObservable$.subscribe(
-      () => (this.displayArrow = this._isArrowDisplayable())
-    );
-
-    this._renderer.listen(
-      this.arrowRef.nativeElement.querySelector('#arrow-left'),
-      'click',
-      () => this._slide('left')
-    );
-    this._renderer.listen(
-      this.arrowRef.nativeElement.querySelector('#arrow-right'),
-      'click',
-      () => this._slide('right')
-    );
-    this.scrollRef.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    SwiperCore.use([Navigation]);
   }
 
   public getCityByAirportCode(airportCode: string): AirportCode {
     return this._flightsService.getCityByAirportCode(airportCode);
-  }
-
-  private _isArrowDisplayable(): boolean {
-    return Math.floor(window.innerWidth / 350) < this.destinations.length;
-  }
-
-  private _slide(direction: string): void {
-    const ratio = Math.floor(window.innerWidth / 350);
-    let transformValue;
-
-    if (direction === 'right') {
-      this.clickCounter++;
-      transformValue = -350;
-    } else {
-      this.clickCounter--;
-      transformValue = +350;
-    }
-
-    if (this.destinations.length - (4 + this.clickCounter) + (4 - ratio) >= 0) {
-      const matrix = new WebKitCSSMatrix(
-        getComputedStyle(this.listRef.nativeElement).transform
-      );
-      this._renderer.setStyle(
-        this.listRef.nativeElement,
-        'transform',
-        `translateX(${matrix.m41 + transformValue}px)`
-      );
-    } else {
-      this._renderer.setStyle(
-        this.listRef.nativeElement,
-        'transform',
-        'translateX(0)'
-      );
-      this.clickCounter = 0;
-    }
   }
 }
