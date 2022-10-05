@@ -1,11 +1,5 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
-import { Destination } from '@world-explorer/api-interfaces';
+import { AfterViewInit, Component } from '@angular/core';
+import { DestinationsDTO } from '@world-explorer/api-interfaces';
 import { fromEvent, Observable } from 'rxjs';
 import { FlightsService } from './services/flights.service';
 
@@ -15,7 +9,7 @@ import { FlightsService } from './services/flights.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements AfterViewInit {
-  flightsArray: Destination[][][] = [];
+  flightsArray: DestinationsDTO[][] = [];
 
   loading = false;
 
@@ -36,10 +30,11 @@ export class AppComponent implements AfterViewInit {
   }
 
   fetchDestinations(peoples: any): void {
+    console.log('received by app', peoples);
     this.loading = true;
 
     this._flightsService
-      .getFlights(peoples.people1, peoples.people2, peoples.start, peoples.end)
+      .getFlights(peoples.peoples, peoples.start, peoples.end)
       .subscribe((flights) => {
         this.loading = false;
         this.flightsArray = [flights, ...this.flightsArray];

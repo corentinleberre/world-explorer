@@ -19,20 +19,26 @@ export class DestinationComponent implements OnInit, OnDestroy {
 
   public imgReference = '';
 
+  public displayImg = false;
+
   constructor(private _flightsService: FlightsService) {}
 
   ngOnInit(): void {
-    this._subscription = this._flightsService
-      .getCityPhoto(
-        this.destinations[0].city.name
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-      )
-      .subscribe((response) => (this.imgReference = response.photo_reference));
+    if (this.displayImg) {
+      this._subscription = this._flightsService
+        .getCityPhoto(
+          this.destinations[0].city.name
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+        )
+        .subscribe(
+          (response) => (this.imgReference = response.photo_reference)
+        );
+    }
   }
 
   ngOnDestroy(): void {
-    this._subscription.unsubscribe();
+    if (this.displayImg) this._subscription.unsubscribe();
   }
 
   public bookingLink(id: number): string {
@@ -45,11 +51,11 @@ export class DestinationComponent implements OnInit, OnDestroy {
         .map((destination) => destination.flightInfo.price)
         .sort((a, b) => a - b)
         .slice(0, 2)
-        .reduce((p, v) => p + v)
+        .reduce((p, c) => p + c)
     );
   }
 
-  get imgLink(): string {
+  public get imgLink(): string {
     return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${this.imgReference}&key=AIzaSyBVAi2KqwhSG3cCtopMZ0VRVBABTpukpYc`;
   }
 }

@@ -7,7 +7,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { Destination } from '@world-explorer/api-interfaces';
+import { DestinationsDTO } from '@world-explorer/api-interfaces';
 import {
   faChevronLeft,
   faChevronRight,
@@ -25,7 +25,7 @@ import { AirportCode } from '../../utils/airport-code.util';
 })
 export class CarouselComponent implements OnInit, AfterViewInit {
   @Input()
-  public flights: Destination[][] = [];
+  public destinations: DestinationsDTO[] = [];
 
   faChevronRight = faChevronRight;
 
@@ -83,7 +83,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
   }
 
   private _isArrowDisplayable(): boolean {
-    return Math.floor(window.innerWidth / 350) < this.flights.length;
+    return Math.floor(window.innerWidth / 350) < this.destinations.length;
   }
 
   private _slide(direction: string): void {
@@ -98,7 +98,7 @@ export class CarouselComponent implements OnInit, AfterViewInit {
       transformValue = +350;
     }
 
-    if (this.flights.length - (4 + this.clickCounter) + (4 - ratio) >= 0) {
+    if (this.destinations.length - (4 + this.clickCounter) + (4 - ratio) >= 0) {
       const matrix = new WebKitCSSMatrix(
         getComputedStyle(this.listRef.nativeElement).transform
       );

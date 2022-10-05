@@ -1,25 +1,51 @@
 <div class="flex flex-row justify-center">
   <div class="w-11/12">
     <div class="p-4">
-      <fa-icon [icon]="faCircleChevronRight" size="1x"></fa-icon> Depuis
-      <span class="font-semibold">
-        {{ getCityByAirportCode(flights[0][0].originAirportShortName).name }} 
-      </span>
-      ({{ getCityByAirportCode(flights[0][0].originAirportShortName).country }}) 
-      et
-      <span class="font-semibold">
-        {{ getCityByAirportCode(flights[0][1].originAirportShortName).name }} 
-      </span>
-      ({{ getCityByAirportCode(flights[0][1].originAirportShortName).country }}) 
-      - Période du {{ moment(flights[0][0].departd).format('DD/MM/YYYY') }} au
-      {{ moment(flights[0][0].returnd).format('DD/MM/YYYY') }}
+      <ng-container
+        *ngFor="
+          let airport of destinations[0].from;
+          let i = index;
+          let first = first;
+          let last = last
+        "
+      >
+        <ng-container *ngIf="first">
+          <fa-icon [icon]="faCircleChevronRight" size="1x"></fa-icon> Depuis
+        </ng-container>
+        <ng-container *ngIf="!first && !last"> , </ng-container>
+        <ng-container *ngIf="last"> et </ng-container>
+        <span class="font-semibold">
+          {{
+            getCityByAirportCode(
+              destinations[0].flights[i].originAirportShortName
+            ).name
+          }}
+        </span>
+        <span>
+          ({{
+            getCityByAirportCode(
+              destinations[0].flights[i].originAirportShortName
+            ).country
+          }})
+        </span>
+        <span *ngIf="last">
+          - Période du
+          {{
+            moment(destinations[0].flights[i].departd).format('DD/MM/YYYY')
+          }}
+          au
+          {{ moment(destinations[0].flights[i].returnd).format('DD/MM/YYYY') }}
+        </span>
+      </ng-container>
     </div>
     <div class="carousel-wrapper">
       <div #carouselList class="carousel-list">
-        <ng-container *ngFor="let destination of flights; let index = index">
+        <ng-container
+          *ngFor="let destination of destinations; let index = index"
+        >
           <world-explorer-destination
             class="carousel-item"
-            [destinations]="destination"
+            [destinations]="destination.flights"
             [highlight]="index === 0"
           ></world-explorer-destination>
         </ng-container>
@@ -40,7 +66,6 @@
         </ng-container>
       </div>
     </div>
-    <div class="p-4 border-b text-xs text-gray-600"></div>
   </div>
   <div #carousel></div>
 </div>
