@@ -1,11 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   faMagnifyingGlass,
   faCircleNotch,
@@ -51,10 +45,6 @@ export class FeaturedComponent {
     this.formGroup.controls[controlName].setValue(value);
   }
 
-  public setPeoplesFormValue(index: number, value: unknown) {
-    this.peoplesFormArray.controls[index].setValue(value);
-  }
-
   public onSubmit(): void {
     if (this.formGroup.valid) {
       this.formSubmitEvent.emit(this.formGroup.value);
@@ -72,24 +62,19 @@ export class FeaturedComponent {
 
   private _buildFormGroup(): FormGroup {
     return this._formBuilder.group({
-      peoples: this._formBuilder.array([
-        this.destinationControls,
-        this.destinationControls,
-      ]),
+      peoples: [[], Validators.required],
       start: [moment().format('YYYY-MM-DD'), Validators.required],
       end: [moment().add(1, 'days').format('YYYY-MM-DD'), Validators.required],
     });
   }
 
-  private get destinationControls(): FormControl {
-    return this._formBuilder.control('', Validators.required);
-  }
-
-  public get peoplesFormArray(): FormArray {
-    return this.formGroup.controls['peoples'] as FormArray;
-  }
-
-  public addNewDestinationControl(): void {
-    this.peoplesFormArray.push(this.destinationControls);
+  public customSearchFn(term: string, item: AirportCode) {
+    term = term.toLowerCase();
+    return (
+      item.name.toLowerCase().indexOf(term) > -1 ||
+      item.city.toLowerCase() === term ||
+      item.country.toLowerCase() === term ||
+      item.code.toLowerCase() === term
+    );
   }
 }

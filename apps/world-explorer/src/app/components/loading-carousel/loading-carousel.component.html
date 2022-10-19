@@ -15,11 +15,14 @@
       ></ngx-skeleton-loader>
     </div>
     <div class="flex flex-row overflow-hidden">
-      <ng-container *ngFor="let i of loadingItems">
-        <world-explorer-loading-destination
-          class="loading-destination"
-        ></world-explorer-loading-destination>
-      </ng-container>
+      <swiper [config]="swiperConfig">
+        <ng-container *ngFor="let i of loadingItems; let index = index">
+          <ng-template swiperSlide>
+            <world-explorer-loading-destination class="loading-destination">
+            </world-explorer-loading-destination>
+          </ng-template>
+        </ng-container>
+      </swiper>
     </div>
   </div>
 </div>

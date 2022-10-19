@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { FlightsService } from '../../services/flights.service';
 import { AirportCode } from '../../utils/airport-code.util';
 import SwiperCore, { Navigation, SwiperOptions } from 'swiper';
+import { carouselSwiperConfig } from '../../utils/carousel-config.util';
 
 @Component({
   selector: 'world-explorer-carousel',
@@ -19,27 +20,7 @@ export class CarouselComponent implements OnInit {
 
   public moment = moment;
 
-  public swiperConfig: SwiperOptions = {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    pagination: false,
-    navigation: true,
-    scrollbar: { draggable: true },
-    breakpoints: {
-      600: {
-        slidesPerView: 2,
-        spaceBetween: 10,
-      },
-      900: {
-        slidesPerView: 4,
-        spaceBetween: 15,
-      },
-      1200: {
-        slidesPerView: 5,
-        spaceBetween: 20,
-      },
-    },
-  };
+  public swiperConfig: SwiperOptions = carouselSwiperConfig;
 
   constructor(private _flightsService: FlightsService) {}
 
