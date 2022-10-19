@@ -3,24 +3,21 @@ import { Injectable } from '@nestjs/common';
 import {
   Destination,
   FlightsTrackerObjectResponse,
-  PlaceResponse,
 } from '@world-explorer/api-interfaces';
-import { AxiosResponse } from 'axios';
-import { map } from 'rxjs';
-import { Observable } from 'rxjs/internal/Observable';
+import { map, Observable } from 'rxjs';
 
 @Injectable()
 export class KayakService {
-  constructor(private httpService: HttpService) {}
+  constructor(private readonly httpService: HttpService) {}
 
   private getFlights(
     airport: string,
     depart: string,
     retour: string,
     maxStop: number
-  ): Observable<AxiosResponse<FlightsTrackerObjectResponse>> {
+  ): Observable<FlightsTrackerObjectResponse> {
     const url = this.buildKayakUrl(airport, depart, retour, maxStop);
-    return this.httpService.get<FlightsTrackerObjectResponse>(url);
+    return this.httpService.get(url).pipe(map((response) => response.data));
   }
 
   private buildKayakUrl(
@@ -40,7 +37,7 @@ export class KayakService {
   ): Observable<Destination[]> {
     return this.getFlights(airport, depart, retour, maxStop).pipe(
       map((response) =>
-        response.data.destinations.sort(
+        response.destinations.sort(
           (a, b) => a.flightInfo.price - b.flightInfo.price
         )
       )

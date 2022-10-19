@@ -101,6 +101,6 @@ export class WorldExplorerService {
   public getDestinationPhotos(city: string): Observable<PlacePhoto> {
     return this._googlePlaceService
       .getPhotos(city)
-      .pipe(map((response) => response.data.results[0]?.photos[0]));
+      .pipe(map((data) => data.results[0]?.photos[0]));
   }
 }

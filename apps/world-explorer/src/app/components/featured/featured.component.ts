@@ -1,5 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  Validators,
+} from '@angular/forms';
 import {
   faMagnifyingGlass,
   faCircleNotch,
@@ -28,11 +32,11 @@ export class FeaturedComponent {
 
   public moment = moment;
 
-  public formGroup!: FormGroup;
+  public formGroup!: UntypedFormGroup;
 
   public airports: AirportCode[] = airports;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: UntypedFormBuilder) {
     this.formGroup = this._buildFormGroup();
     this.formGroup.controls['start'].valueChanges.subscribe((value) =>
       this.formGroup.controls['end'].setValue(
@@ -60,7 +64,7 @@ export class FeaturedComponent {
     return classes;
   }
 
-  private _buildFormGroup(): FormGroup {
+  private _buildFormGroup(): UntypedFormGroup {
     return this._formBuilder.group({
       peoples: [[], Validators.required],
       start: [moment().format('YYYY-MM-DD'), Validators.required],
