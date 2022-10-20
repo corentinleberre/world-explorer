@@ -727,7 +727,7 @@ export const airports: AirportCode[] = [
     code: 'MEL',
   },
   {
-    name: "Cote D\\\\'Azur",
+    name: "Cote D'Azur",
     city: 'Nice',
     country: 'France',
     code: 'NCE',
@@ -2335,7 +2335,7 @@ export const airports: AirportCode[] = [
     code: 'KGL',
   },
   {
-    name: "Faa\\\\'a International",
+    name: "Faa'a International",
     city: 'Papeete',
     country: 'French Polynesia',
     code: 'PPT',
@@ -9727,7 +9727,7 @@ export const airports: AirportCode[] = [
     code: 'ERI',
   },
   {
-    name: "Martha\\\\'s Vineyard",
+    name: "Martha's Vineyard",
     city: 'Vineyard Haven MA',
     country: 'United States',
     code: 'MVY',
@@ -11588,7 +11588,7 @@ export const airports: AirportCode[] = [
   },
   {
     name: 'ISLES OF SCILLY',
-    city: "ST MARY\\\\'S",
+    city: "ST MARY'S",
     country: 'United Kingdom',
     code: 'ISC',
   },

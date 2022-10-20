@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

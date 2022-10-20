@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
+  UntypedFormBuilder,
+  UntypedFormGroup,
   Validators,
 } from '@angular/forms';
 import {
@@ -34,11 +32,11 @@ export class FeaturedComponent {
 
   public moment = moment;
 
-  public formGroup!: FormGroup;
+  public formGroup!: UntypedFormGroup;
 
   public airports: AirportCode[] = airports;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: UntypedFormBuilder) {
     this.formGroup = this._buildFormGroup();
     this.formGroup.controls['start'].valueChanges.subscribe((value) =>
       this.formGroup.controls['end'].setValue(
@@ -49,10 +47,6 @@ export class FeaturedComponent {
 
   public setControlValue(controlName: string, value: unknown) {
     this.formGroup.controls[controlName].setValue(value);
-  }
-
-  public setPeoplesFormValue(index: number, value: unknown) {
-    this.peoplesFormArray.controls[index].setValue(value);
   }
 
   public onSubmit(): void {
@@ -70,26 +64,21 @@ export class FeaturedComponent {
     return classes;
   }
 
-  private _buildFormGroup(): FormGroup {
+  private _buildFormGroup(): UntypedFormGroup {
     return this._formBuilder.group({
-      peoples: this._formBuilder.array([
-        this.destinationControls,
-        this.destinationControls,
-      ]),
+      peoples: [[], Validators.required],
       start: [moment().format('YYYY-MM-DD'), Validators.required],
       end: [moment().add(1, 'days').format('YYYY-MM-DD'), Validators.required],
     });
   }
 
-  private get destinationControls(): FormControl {
-    return this._formBuilder.control('', Validators.required);
-  }
-
-  public get peoplesFormArray(): FormArray {
-    return this.formGroup.controls['peoples'] as FormArray;
-  }
-
-  public addNewDestinationControl(): void {
-    this.peoplesFormArray.push(this.destinationControls);
+  public customSearchFn(term: string, item: AirportCode) {
+    term = term.toLowerCase();
+    return (
+      item.name.toLowerCase().indexOf(term) > -1 ||
+      item.city.toLowerCase() === term ||
+      item.country.toLowerCase() === term ||
+      item.code.toLowerCase() === term
+    );
   }
 }

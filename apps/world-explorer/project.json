@@ -1,6 +1,6 @@
 {
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "root": "apps/world-explorer",
   "sourceRoot": "apps/world-explorer/src",
   "prefix": "world-explorer",
   "targets": {
@@ -75,9 +75,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/world-explorer"],
+      "outputs": ["{workspaceRoot}/coverage/apps/world-explorer"],
       "options": {
-        "jestConfig": "apps/world-explorer/jest.config.js",
+        "jestConfig": "apps/world-explorer/jest.config.ts",
         "passWithNoTests": true
       }
     }

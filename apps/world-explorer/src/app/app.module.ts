@@ -11,10 +11,11 @@ import { FeaturedComponent } from './components/featured/featured.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CommonModule } from '@angular/common';
-import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { LoadingDestinationComponent } from './components/loading-destination/loading-destination.component';
 import { LoadingCarouselComponent } from './components/loading-carousel/loading-carousel.component';
 import { SwiperModule } from 'swiper/angular';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -24,8 +25,9 @@ import { SwiperModule } from 'swiper/angular';
     ReactiveFormsModule,
     FontAwesomeModule,
     NgxSkeletonLoaderModule,
-    AutocompleteLibModule,
     SwiperModule,
+    NgSelectModule,
+    FormsModule,
   ],
   declarations: [
     AppComponent,

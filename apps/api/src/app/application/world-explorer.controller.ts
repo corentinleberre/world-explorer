@@ -10,9 +10,9 @@ export class WorldExplorerController {
 
   @Get('flights-explorer')
   public getCommonFlightsForNPeople(
-    @Query('airports') airports,
-    @Query('depart') depart,
-    @Query('retour') retour,
+    @Query('airports') airports: Array<string>,
+    @Query('depart') depart: string,
+    @Query('retour') retour: string,
     @Query('maxStop') maxStop = 0
   ): Observable<DestinationsDTO[]> {
     return this._worldExplorer.getCommonFlights(
