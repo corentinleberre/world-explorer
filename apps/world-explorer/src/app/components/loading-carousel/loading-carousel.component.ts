@@ -10,11 +10,11 @@ import { loadingCarouselSwiperConfig } from '../../utils/carousel-config.util';
 export class LoadingCarouselComponent {
   public swiperConfig: SwiperOptions = loadingCarouselSwiperConfig;
 
-  ngOnInit(): void {
+  constructor() {
     SwiperCore.use([Navigation]);
   }
 
   get loadingItems(): number[] {
-    return [...Array(Math.floor(window.innerWidth / 350) + 1).keys()];
+    return Array(5);
   }
 }

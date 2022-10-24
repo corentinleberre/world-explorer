@@ -16,9 +16,9 @@
     </div>
     <div class="flex flex-row overflow-hidden">
       <swiper [config]="swiperConfig">
-        <ng-container *ngFor="let i of loadingItems; let index = index">
+        <ng-container *ngFor="let i of loadingItems">
           <ng-template swiperSlide>
-            <world-explorer-loading-destination class="loading-destination">
+            <world-explorer-loading-destination>
             </world-explorer-loading-destination>
           </ng-template>
         </ng-container>

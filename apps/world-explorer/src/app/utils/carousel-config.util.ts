@@ -20,21 +20,22 @@ const swiperBreakpoints: SwiperOptions = {
 const defaultSwiperConfig: SwiperOptions = {
   slidesPerView: 1,
   spaceBetween: 20,
-  pagination: false,
   keyboard: true,
 };
 
-const carouselSwiperConfig = {
-  ...defaultSwiperConfig,
-  ...swiperBreakpoints,
-  navigation: true,
-  scrollbar: { draggable: true },
-};
-
-const loadingCarouselSwiperConfig = {
+const carouselSwiperConfig: SwiperOptions = {
   ...defaultSwiperConfig,
   ...swiperBreakpoints,
   navigation: false,
+  simulateTouch: true,
+  scrollbar: { draggable: true },
+};
+
+const loadingCarouselSwiperConfig: SwiperOptions = {
+  ...defaultSwiperConfig,
+  ...swiperBreakpoints,
+  navigation: false,
+  speed: 0,
   scrollbar: { draggable: false },
 };
 

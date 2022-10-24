@@ -38,15 +38,14 @@
     </div>
     <div class="w-full">
       <swiper [config]="swiperConfig">
-        <ng-container
-          *ngFor="let destination of destinations; let index = index"
-          ><ng-template swiperSlide>
+        <ng-container *ngFor="let d of destinations; let index = index">
+          <ng-template swiperSlide>
             <world-explorer-destination
-              class="carousel-item"
-              [destinations]="destination.flights"
+              [destinations]="d.flights"
               [highlight]="index === 0"
-            ></world-explorer-destination
-          ></ng-template>
+            >
+            </world-explorer-destination>
+          </ng-template>
         </ng-container>
       </swiper>
     </div>

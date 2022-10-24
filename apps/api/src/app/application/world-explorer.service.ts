@@ -17,8 +17,8 @@ export class WorldExplorerService {
 
   public getCommonFlights(
     airports: Array<string>,
-    depart: string,
-    retour: string,
+    start: string,
+    end: string,
     maxStop: number
   ): Observable<Array<DestinationsDTO>> {
     const airportsWithoutDuplicate = Array.from(new Set(airports));
@@ -26,8 +26,8 @@ export class WorldExplorerService {
       ...airportsWithoutDuplicate.map((airport) =>
         this._kayakService.getFlightsOrdonateByPrice(
           airport,
-          depart,
-          retour,
+          start,
+          end,
           maxStop
         )
       )

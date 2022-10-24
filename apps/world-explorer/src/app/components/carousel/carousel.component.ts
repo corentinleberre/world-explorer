@@ -4,7 +4,7 @@ import { faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
 import { FlightsService } from '../../services/flights.service';
 import { AirportCode } from '../../utils/airport-code.util';
-import SwiperCore, { Navigation, SwiperOptions } from 'swiper';
+import SwiperCore, { Navigation, Pagination, SwiperOptions } from 'swiper';
 import { carouselSwiperConfig } from '../../utils/carousel-config.util';
 
 @Component({
@@ -25,7 +25,7 @@ export class CarouselComponent implements OnInit {
   constructor(private _flightsService: FlightsService) {}
 
   ngOnInit(): void {
-    SwiperCore.use([Navigation]);
+    SwiperCore.use([Navigation, Pagination]);
   }
 
   public getCityByAirportCode(airportCode: string): AirportCode {

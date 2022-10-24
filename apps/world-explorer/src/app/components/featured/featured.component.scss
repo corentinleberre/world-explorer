@@ -42,28 +42,9 @@ fa-icon {
   @apply flex flex-row items-center;
 }
 
-.ng-autocomplete {
-  @apply w-full sm:w-auto;
-  ::ng-deep .autocomplete-container {
-    width: 100%;
-    height: unset;
-
-    @apply bg-white shadow rounded-lg p-3;
-
-    .input-container {
-      input {
-        font-size: unset;
-        box-sizing: unset;
-        border: unset;
-        box-shadow: unset;
-        outline: unset;
-        background-color: unset;
-        color: unset;
-        width: unset;
-        padding: unset;
-        line-height: unset;
-        height: unset;
-      }
-    }
+::ng-deep .ng-select {
+  width: 100%;
+  .ng-select-container {
+    border-radius: 8px;
   }
 }

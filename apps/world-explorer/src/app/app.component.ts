@@ -1,6 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { DestinationsDTO } from '@world-explorer/api-interfaces';
 import { fromEvent, Observable } from 'rxjs';
+import SwiperCore, { Navigation } from 'swiper';
 import { FlightsService } from './services/flights.service';
 
 @Component({

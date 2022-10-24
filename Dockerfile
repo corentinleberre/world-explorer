@@ -5,7 +5,7 @@ ENV NODE_ENV build
 WORKDIR /home/node/world-explorer
 
 COPY --chown=node:node . .
-RUN npm ci
+RUN npm install
 RUN npm run build:api \
     && npm prune --production
 

@@ -17,7 +17,7 @@
         (ngSubmit)="onSubmit()"
         class="bottom-0 featured-input rounded-lg shadow-md border-solid border-2 border-sky-500"
       >
-        <div class="flex-row-center flex-wrap bg-[#f0f3f5] rounded-lg">
+        <div class="flex-row-center flex-wrap bg-[#f0f3f5] rounded-lg w-full">
           <div class="w-10/10 sm:w-5/10">
             <ng-select
               [items]="airports"
@@ -31,7 +31,7 @@
               groupBy="country"
               placeholder="Selectionnez vos aéroports de départs"
               formControlName="peoples"
-              class="p-3"
+              class="p-3 w-full"
             >
               <ng-template ng-option-tmp let-item="item">
                 {{ item.name }} <br />

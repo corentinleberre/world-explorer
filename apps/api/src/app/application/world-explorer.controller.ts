@@ -11,16 +11,11 @@ export class WorldExplorerController {
   @Get('flights-explorer')
   public getCommonFlightsForNPeople(
     @Query('airports') airports: Array<string>,
-    @Query('depart') depart: string,
-    @Query('retour') retour: string,
+    @Query('start') start: string,
+    @Query('end') end: string,
     @Query('maxStop') maxStop = 0
   ): Observable<DestinationsDTO[]> {
-    return this._worldExplorer.getCommonFlights(
-      airports,
-      depart,
-      retour,
-      maxStop
-    );
+    return this._worldExplorer.getCommonFlights(airports, start, end, maxStop);
   }
 
   @Get('place-img')
