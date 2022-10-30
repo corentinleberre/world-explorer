@@ -1,7 +1,6 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { PlaceResponse } from '@world-explorer/api-interfaces';
-import { AxiosResponse } from 'axios';
 import { map, Observable } from 'rxjs';
 
 @Injectable()
@@ -15,6 +14,6 @@ export class GooglePlaceService {
   }
 
   private url(city: string): string {
-    return `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${city}&key=AIzaSyBVAi2KqwhSG3cCtopMZ0VRVBABTpukpYc`;
+    return `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${city}&key=$KEY`;
   }
 }

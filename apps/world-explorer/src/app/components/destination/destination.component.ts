@@ -56,6 +56,6 @@ export class DestinationComponent implements OnInit, OnDestroy {
   }
 
   public get imgLink(): string {
-    return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${this.imgReference}&key=AIzaSyBVAi2KqwhSG3cCtopMZ0VRVBABTpukpYc`;
+    return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${this.imgReference}&key=$KEY`;
   }
 }
