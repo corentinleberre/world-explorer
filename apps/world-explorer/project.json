@@ -82,5 +82,6 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "name": "world-explorer"
 }
